@@ -4,6 +4,8 @@ Gleb Bulygin<br>gbulygin@students.oamk.fi<br>DIN24SP<br>Autumn 2026
 
 ---
 
+> Since some of the terms were not clearly explained during the lectures or on the provided slides, for tasks that required writing a definition of some terms I used Microsoft Copilot and Claude with following prompt: _"Write a 2-3 sentences explaining following terms: `[list of terms]`"._ If something was not clear to me, I used follow up questions asking AI assistant to explain the term to me (or the power of Google). All other tasks were completed without use of AI.
+
 ## Week 1
 
 ### 1. **Define foundational networking terms.** Write 2–3 sentences for each term. State what it means, why it matters, and, where useful, give one concrete example or relationship to another term.
