@@ -97,6 +97,126 @@ A **_VLAN (Virtual LAN)_** divides a physical network into separate logical netw
 
 ### 10. What it the difference between static and dynamic routing? Use example(s)
 
+> Apparently, I misunderstood the question slightly at the beginning. I've kept the section about static and dynamic IP addresses because it is still relevant to the topic, but the first part of the answer has been updated to better address the original question.
+
+### Static vs Dynamic Routing
+
+Quite often there is no need for dynamic routing.
+
+Even relatively large organizations may have only a few routers, for example:
+
+- One router connecting all internal subnets
+- One firewall connecting the organization to the Internet
+
+In such a network, only a few static routes may be required.
+
+Example
+
+On the router connected to all local networks:
+
+- Configure a default route (0.0.0.0/0) pointing to the firewall.
+
+On the firewall:
+
+- Forward Internet-bound traffic to the Internet Service Provider (ISP).
+- Forward traffic destined for internal networks back to the internal router.
+
+In this type of network, static routing is simple, easy to manage, and introduces very little overhead.
+
+**When is Dynamic Routing Needed?**
+
+Dynamic routing becomes useful when the network topology changes frequently.
+
+Examples include:
+
+Large enterprise networks
+Networks with multiple interconnected routers
+Networks with redundant links
+Data centers
+Wireless mesh networks
+Large IoT deployments where devices or routing paths may change
+
+Dynamic routing protocols automatically learn routes and can adapt when links or routers fail.
+
+Examples of dynamic routing protocols:
+
+- RIP (Routing Information Protocol)
+- OSPF (Open Shortest Path First)
+- EIGRP
+- IS-IS
+- BGP (Border Gateway Protocol)
+
+A major disadvantage of static routing is that routes do not adapt automatically to network failures.
+
+For example:
+
+```
+Router A ---- Router B ---- Router C
+```
+
+If the link between Router B and Router C fails:
+
+Traffic will continue to be sent toward Router B.
+The packets will not reach their destination.
+Connectivity will be lost until the route is manually changed or a backup route has been configured.
+
+Dynamic routing protocols can automatically detect such failures and select alternative paths.
+
+**Routing Metrics**
+
+When multiple paths exist, routers use routing metrics to determine the best route.
+
+Common metrics include:
+
+- Bandwidth
+- Delay (latency)
+- Hop count
+- Reliability
+- Cost
+- Hop Count
+
+Hop count measures the number of routers a packet must pass through.
+
+Example:
+
+```
+Path A: 3 hops
+Path B: 5 hops
+```
+
+Using only hop count, Path A would be selected.
+
+However, fewer hops do not necessarily mean better performance. A shorter path may contain a slow or congested link.
+
+**Bandwidth**
+Bandwidth is often a better metric because it reflects the capacity of a link.
+
+Example:
+
+```
+Path A: 3 hops, 10 Mbps
+Path B: 5 hops, 1 Gbps
+```
+
+Although Path B has more hops, it may provide significantly better throughput.
+
+**RIP and OSPF**
+
+**RIP (Routing Information Protocol)**
+Uses hop count as its metric.
+The route with the fewest hops is preferred.
+Simple to configure.
+Suitable for small networks.
+Maximum path length is 15 hops.
+
+**OSPF (Open Shortest Path First)**
+Uses a cost metric based primarily on bandwidth.
+Faster convergence than RIP.
+Better suited for medium and large networks.
+Can select higher-bandwidth paths even when they contain more hops.
+
+---
+
 ![](./src/static_vs_dynamic.png)
 **_Figure 2.5_** — Static vs dynamic slide
 
