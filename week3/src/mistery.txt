@@ -1,0 +1,644 @@
+$ strace -tt node slow.js 
+ 13:43:25.428436 execve("/usr/bin/node", ["node", "slow.js"], 0x7ffd97b262a0 ) = 0 
+ 13:43:25.428859 brk(NULL)               = 0x52d4000 
+ 13:43:25.428919 arch_prctl(0x3001 , 0x7ffebd9f3d50) = -1 EINVAL (Invalid argument) 
+ 13:43:25.429039 access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory) 
+ 13:43:25.429138 openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3 
+ 13:43:25.429247 fstat(3, {st_mode=S_IFREG|0644, st_size=27066, ...}) = 0 
+ 13:43:25.429293 mmap(NULL, 27066, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7f1c832c1000 
+ 13:43:25.429333 close(3)                = 0 
+ 13:43:25.429373 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libdl.so.2", O_RDONLY|O_CLOEXEC) = 3 
+ 13:43:25.429417 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0 \22\0\0\0\0\0\0"..., 832) = 832 
+ 13:43:25.429470 fstat(3, {st_mode=S_IFREG|0644, st_size=18816, ...}) = 0 
+ 13:43:25.429527 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f1c832bf000 
+ 13:43:25.429590 mmap(NULL, 20752, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7f1c832b9000 
+ 13:43:25.429647 mmap(0x7f1c832ba000, 8192, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1000) = 0x7f1c832ba000 
+ 13:43:25.429709 mmap(0x7f1c832bc000, 4096, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x3000) = 0x7f1c832bc000 
+ 13:43:25.429748 mmap(0x7f1c832bd000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x3000) = 0x7f1c832bd000 
+ 13:43:25.429836 close(3)                = 0 
+ 13:43:25.429887 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = 3 
+ 13:43:25.429945 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\240\341\t\0\0\0\0\0"..., 832) = 832 
+ 13:43:25.429984 fstat(3, {st_mode=S_IFREG|0644, st_size=1952928, ...}) = 0 
+ 13:43:25.430034 mmap(NULL, 1968128, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7f1c830d8000 
+ 13:43:25.430092 mprotect(0x7f1c8316e000, 1286144, PROT_NONE) = 0 
+ 13:43:25.430152 mmap(0x7f1c8316e000, 983040, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x96000) = 0x7f1c8316e000 
+ 13:43:25.430209 mmap(0x7f1c8325e000, 299008, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x186000) = 0x7f1c8325e000 
+ 13:43:25.430247 mmap(0x7f1c832a8000, 57344, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1cf000) = 0x7f1c832a8000 
+ 13:43:25.430294 mmap(0x7f1c832b6000, 10240, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7f1c832b6000 
+ 13:43:25.430345 close(3)                = 0 
+ 13:43:25.430392 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libm.so.6", O_RDONLY|O_CLOEXEC) = 3 
+ 13:43:25.430441 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\300\363\0\0\0\0\0\0"..., 832) = 832 
+ 13:43:25.430480 fstat(3, {st_mode=S_IFREG|0644, st_size=1369352, ...}) = 0 
+ 13:43:25.430518 mmap(NULL, 1368336, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7f1c82f89000 
+ 13:43:25.430555 mmap(0x7f1c82f98000, 684032, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xf000) = 0x7f1c82f98000 
+ 13:43:25.430605 mmap(0x7f1c8303f000, 618496, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xb6000) = 0x7f1c8303f000 
+ 13:43:25.430686 mmap(0x7f1c830d6000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x14c000) = 0x7f1c830d6000 
+ 13:43:25.430781 close(3)                = 0 
+ 13:43:25.430854 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = 3 
+ 13:43:25.430915 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\3405\0\0\0\0\0\0"..., 832) = 832 
+ 13:43:25.430960 fstat(3, {st_mode=S_IFREG|0644, st_size=104984, ...}) = 0 
+ 13:43:25.431017 mmap(NULL, 107592, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7f1c82f6e000 
+ 13:43:25.431061 mmap(0x7f1c82f71000, 73728, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x3000) = 0x7f1c82f71000 
+ 13:43:25.431103 mmap(0x7f1c82f83000, 16384, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x15000) = 0x7f1c82f83000 
+ 13:43:25.431139 mmap(0x7f1c82f87000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x18000) = 0x7f1c82f87000 
+ 13:43:25.431193 close(3)                = 0 
+ 13:43:25.431245 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libpthread.so.0", O_RDONLY|O_CLOEXEC) = 3 
+ 13:43:25.431299 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\220\201\0\0\0\0\0\0"..., 832) = 832 
+ 13:43:25.431427 pread64(3, "\4\0\0\0\24\0\0\0\3\0\0\0GNU\0\345Ga\367\265T\320\374\301V)Yf]\223\337"..., 68, 824) = 68 
+ 13:43:25.431477 fstat(3, {st_mode=S_IFREG|0755, st_size=157224, ...}) = 0 
+ 13:43:25.431516 pread64(3, "\4\0\0\0\24\0\0\0\3\0\0\0GNU\0\345Ga\367\265T\320\374\301V)Yf]\223\337"..., 68, 824) = 68 
+ 13:43:25.431553 mmap(NULL, 140408, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7f1c82f4b000 
+ 13:43:25.431591 mmap(0x7f1c82f52000, 69632, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x7000) = 0x7f1c82f52000 
+ 13:43:25.431634 mmap(0x7f1c82f63000, 20480, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x18000) = 0x7f1c82f63000 
+ 13:43:25.431671 mmap(0x7f1c82f68000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1c000) = 0x7f1c82f68000 
+ 13:43:25.431717 mmap(0x7f1c82f6a000, 13432, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7f1c82f6a000 
+ 13:43:25.431768 close(3)                = 0 
+ 13:43:25.431809 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3 
+ 13:43:25.431857 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\360q\2\0\0\0\0\0"..., 832) = 832 
+ 13:43:25.431895 pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784 
+ 13:43:25.431930 pread64(3, "\4\0\0\0\20\0\0\0\5\0\0\0GNU\0\2\0\0\300\4\0\0\0\3\0\0\0\0\0\0\0", 32, 848) = 32 
+ 13:43:25.431965 pread64(3, "\4\0\0\0\24\0\0\0\3\0\0\0GNU\0\t\233\222%\274\260\320\31\331\326\10\204\276X>\263"..., 68, 880) = 68 
+ 13:43:25.432001 fstat(3, {st_mode=S_IFREG|0755, st_size=2029224, ...}) = 0 
+ 13:43:25.432038 pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784 
+ 13:43:25.432074 pread64(3, "\4\0\0\0\20\0\0\0\5\0\0\0GNU\0\2\0\0\300\4\0\0\0\3\0\0\0\0\0\0\0", 32, 848) = 32 
+ 13:43:25.432109 pread64(3, "\4\0\0\0\24\0\0\0\3\0\0\0GNU\0\t\233\222%\274\260\320\31\331\326\10\204\276X>\263"..., 68, 880) = 68 
+ 13:43:25.432167 mmap(NULL, 2036952, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7f1c82d59000 
+ 13:43:25.432239 mprotect(0x7f1c82d7e000, 1847296, PROT_NONE) = 0 
+ 13:43:25.432315 mmap(0x7f1c82d7e000, 1540096, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x25000) = 0x7f1c82d7e000 
+ 13:43:25.432512 mmap(0x7f1c82ef6000, 303104, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x19d000) = 0x7f1c82ef6000 
+ 13:43:25.432578 mmap(0x7f1c82f41000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1e7000) = 0x7f1c82f41000 
+ 13:43:25.432628 mmap(0x7f1c82f47000, 13528, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7f1c82f47000 
+ 13:43:25.432716 close(3)                = 0 
+ 13:43:25.432796 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f1c82d57000 
+ 13:43:25.432856 mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f1c82d54000 
+ 13:43:25.432900 arch_prctl(ARCH_SET_FS, 0x7f1c82d54780) = 0 
+ 13:43:25.433123 mprotect(0x7f1c82f41000, 12288, PROT_READ) = 0 
+ 13:43:25.433190 mprotect(0x7f1c82f68000, 4096, PROT_READ) = 0 
+ 13:43:25.433244 mprotect(0x7f1c82f87000, 4096, PROT_READ) = 0 
+ 13:43:25.433320 mprotect(0x7f1c830d6000, 4096, PROT_READ) = 0 
+ 13:43:25.434235 mprotect(0x7f1c832a8000, 45056, PROT_READ) = 0 
+ 13:43:25.434307 mprotect(0x7f1c832bd000, 4096, PROT_READ) = 0 
+ 13:43:25.434825 mprotect(0x4586000, 12288, PROT_READ) = 0 
+ 13:43:25.434887 mprotect(0x7f1c832f5000, 4096, PROT_READ) = 0 
+ 13:43:25.434935 munmap(0x7f1c832c1000, 27066) = 0 
+ 13:43:25.435017 set_tid_address(0x7f1c82d54a50) = 106154 
+ 13:43:25.435073 set_robust_list(0x7f1c82d54a60, 24) = 0 
+ 13:43:25.435123 rt_sigaction(SIGRTMIN, {sa_handler=0x7f1c82f52bf0, sa_mask=[], sa_flags=SA_RESTORER|SA_SIGINFO, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.435198 rt_sigaction(SIGRT_1, {sa_handler=0x7f1c82f52c90, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART|SA_SIGINFO, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.435270 rt_sigprocmask(SIG_UNBLOCK, [RTMIN RT_1], NULL, 8) = 0 
+ 13:43:25.435339 prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0 
+ 13:43:25.435579 brk(NULL)               = 0x52d4000 
+ 13:43:25.435629 brk(0x52f5000)          = 0x52f5000 
+ 13:43:25.435772 futex(0x7f1c832b66bc, FUTEX_WAKE_PRIVATE, 2147483647) = 0 
+ 13:43:25.435884 futex(0x7f1c832b66c8, FUTEX_WAKE_PRIVATE, 2147483647) = 0 
+ 13:43:25.436358 brk(0x5316000)          = 0x5316000 
+ 13:43:25.436589 futex(0x45a83d0, FUTEX_WAKE_PRIVATE, 2147483647) = 0 
+ 13:43:25.436800 getuid()                = 0 
+ 13:43:25.436849 geteuid()               = 0 
+ 13:43:25.436905 getgid()                = 0 
+ 13:43:25.436950 getegid()               = 0 
+ 13:43:25.436998 rt_sigprocmask(SIG_SETMASK, [USR1], NULL, 8) = 0 
+ 13:43:25.437065 fstat(0, {st_mode=S_IFCHR|0600, st_rdev=makedev(0x88, 0), ...}) = 0 
+ 13:43:25.437111 fstat(1, {st_mode=S_IFCHR|0600, st_rdev=makedev(0x88, 0), ...}) = 0 
+ 13:43:25.437147 fstat(2, {st_mode=S_IFCHR|0600, st_rdev=makedev(0x88, 0), ...}) = 0 
+ 13:43:25.437182 rt_sigaction(SIGHUP, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.437220 rt_sigaction(SIGINT, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.437255 rt_sigaction(SIGQUIT, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.437289 rt_sigaction(SIGILL, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.437323 rt_sigaction(SIGTRAP, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.437357 rt_sigaction(SIGABRT, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.437391 rt_sigaction(SIGBUS, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.437424 rt_sigaction(SIGFPE, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.437458 rt_sigaction(SIGUSR1, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.437492 rt_sigaction(SIGSEGV, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.437525 rt_sigaction(SIGUSR2, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.437559 rt_sigaction(SIGPIPE, {sa_handler=SIG_IGN, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.437593 rt_sigaction(SIGALRM, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.437627 rt_sigaction(SIGTERM, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.437661 rt_sigaction(SIGSTKFLT, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.437695 rt_sigaction(SIGCHLD, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.437729 rt_sigaction(SIGCONT, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.437762 rt_sigaction(SIGTSTP, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.437803 rt_sigaction(SIGTTIN, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.437872 rt_sigaction(SIGTTOU, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.437912 rt_sigaction(SIGURG, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.437947 rt_sigaction(SIGXCPU, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.437981 rt_sigaction(SIGXFSZ, {sa_handler=SIG_IGN, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.438026 rt_sigaction(SIGVTALRM, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.438062 rt_sigaction(SIGPROF, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.438095 rt_sigaction(SIGWINCH, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.438129 rt_sigaction(SIGIO, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.438163 rt_sigaction(SIGPWR, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.438196 rt_sigaction(SIGSYS, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.438235 fcntl(0, F_GETFL)       = 0x2 (flags O_RDWR) 
+ 13:43:25.438271 ioctl(0, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.438316 ioctl(0, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.438352 fcntl(1, F_GETFL)       = 0x2 (flags O_RDWR) 
+ 13:43:25.438383 ioctl(1, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.438418 ioctl(1, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.438453 fcntl(2, F_GETFL)       = 0x2 (flags O_RDWR) 
+ 13:43:25.438484 ioctl(2, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.438518 ioctl(2, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.438553 rt_sigaction(SIGINT, {sa_handler=0xa4dfb0, sa_mask=~[RTMIN RT_1], sa_flags=SA_RESTORER|SA_RESETHAND, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.438590 rt_sigaction(SIGTERM, {sa_handler=0xa4dfb0, sa_mask=~[RTMIN RT_1], sa_flags=SA_RESTORER|SA_RESETHAND, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.438625 rt_sigaction(SIGSEGV, {sa_handler=0xa4dfd0, sa_mask=[], sa_flags=SA_RESTORER|SA_SIGINFO, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.438732 prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=1024, rlim_max=1024*1024}) = 0 
+ 13:43:25.438803 prlimit64(0, RLIMIT_NOFILE, {rlim_cur=1024*1024, rlim_max=1024*1024}, NULL) = 0 
+ 13:43:25.438988 ioctl(0, FIOCLEX)       = 0 
+ 13:43:25.439067 ioctl(1, FIOCLEX)       = 0 
+ 13:43:25.439132 ioctl(2, FIOCLEX)       = 0 
+ 13:43:25.439167 ioctl(3, FIOCLEX)       = -1 EBADF (Bad file descriptor) 
+ 13:43:25.439205 ioctl(4, FIOCLEX)       = -1 EBADF (Bad file descriptor) 
+ 13:43:25.439237 ioctl(5, FIOCLEX)       = -1 EBADF (Bad file descriptor) 
+ 13:43:25.439268 ioctl(6, FIOCLEX)       = -1 EBADF (Bad file descriptor) 
+ 13:43:25.439299 ioctl(7, FIOCLEX)       = -1 EBADF (Bad file descriptor) 
+ 13:43:25.439330 ioctl(8, FIOCLEX)       = -1 EBADF (Bad file descriptor) 
+ 13:43:25.439412 ioctl(9, FIOCLEX)       = -1 EBADF (Bad file descriptor) 
+ 13:43:25.439454 ioctl(10, FIOCLEX)      = -1 EBADF (Bad file descriptor) 
+ 13:43:25.439485 ioctl(11, FIOCLEX)      = -1 EBADF (Bad file descriptor) 
+ 13:43:25.439516 ioctl(12, FIOCLEX)      = -1 EBADF (Bad file descriptor) 
+ 13:43:25.439547 ioctl(13, FIOCLEX)      = -1 EBADF (Bad file descriptor) 
+ 13:43:25.439578 ioctl(14, FIOCLEX)      = -1 EBADF (Bad file descriptor) 
+ 13:43:25.439608 ioctl(15, FIOCLEX)      = -1 EBADF (Bad file descriptor) 
+ 13:43:25.439639 ioctl(16, FIOCLEX)      = -1 EBADF (Bad file descriptor) 
+ 13:43:25.439673 getuid()                = 0 
+ 13:43:25.439703 geteuid()               = 0 
+ 13:43:25.439732 getgid()                = 0 
+ 13:43:25.439769 getegid()               = 0 
+ 13:43:25.439803 getuid()                = 0 
+ 13:43:25.439835 geteuid()               = 0 
+ 13:43:25.439864 getgid()                = 0 
+ 13:43:25.439893 getegid()               = 0 
+ 13:43:25.439922 getuid()                = 0 
+ 13:43:25.439960 geteuid()               = 0 
+ 13:43:25.440018 getgid()                = 0 
+ 13:43:25.440073 getegid()               = 0 
+ 13:43:25.440112 getuid()                = 0 
+ 13:43:25.440143 geteuid()               = 0 
+ 13:43:25.440172 getgid()                = 0 
+ 13:43:25.440200 getegid()               = 0 
+ 13:43:25.440230 getuid()                = 0 
+ 13:43:25.440259 geteuid()               = 0 
+ 13:43:25.440288 getgid()                = 0 
+ 13:43:25.440328 getegid()               = 0 
+ 13:43:25.440415 getuid()                = 0 
+ 13:43:25.440460 geteuid()               = 0 
+ 13:43:25.440500 getgid()                = 0 
+ 13:43:25.440530 getegid()               = 0 
+ 13:43:25.440600 futex(0x45af060, FUTEX_WAKE_PRIVATE, 2147483647) = 0 
+ 13:43:25.440874 getuid()                = 0 
+ 13:43:25.440917 geteuid()               = 0 
+ 13:43:25.440947 getgid()                = 0 
+ 13:43:25.440976 getegid()               = 0 
+ 13:43:25.441039 epoll_create1(EPOLL_CLOEXEC) = 3 
+ 13:43:25.441084 pipe2([4, 5], O_CLOEXEC) = 0 
+ 13:43:25.441133 write(5, "*", 1)        = 1 
+ 13:43:25.441173 futex(0x45a83c8, FUTEX_WAKE_PRIVATE, 2147483647) = 0 
+ 13:43:25.441205 pipe2([6, 7], O_NONBLOCK|O_CLOEXEC) = 0 
+ 13:43:25.441252 eventfd2(0, EFD_CLOEXEC|EFD_NONBLOCK) = 8 
+ 13:43:25.441299 prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0 
+ 13:43:25.441345 mmap(NULL, 8392704, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x7f1c82553000 
+ 13:43:25.441388 mprotect(0x7f1c82554000, 8388608, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.441445 clone(child_stack=0x7f1c82d52f70, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tid=[106155], tls=0x7f1c82d53700, child_tidptr=0x7f1c82d539d0) = 106155 
+ 13:43:25.441533 futex(0x53144b0, FUTEX_WAIT_BITSET_PRIVATE|FUTEX_CLOCK_REALTIME, 0, NULL, FUTEX_BITSET_MATCH_ANY) = 0 
+ 13:43:25.441629 prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0 
+ 13:43:25.441670 mmap(NULL, 8392704, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x7f1c81d52000 
+ 13:43:25.441717 mprotect(0x7f1c81d53000, 8388608, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.441817 clone(child_stack=0x7f1c82551f70, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tid=[106156], tls=0x7f1c82552700, child_tidptr=0x7f1c825529d0) = 106156 
+ 13:43:25.441920 prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0 
+ 13:43:25.441985 mmap(NULL, 8392704, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x7f1c81551000 
+ 13:43:25.442055 mprotect(0x7f1c81552000, 8388608, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.442119 clone(child_stack=0x7f1c81d50f70, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tid=[106157], tls=0x7f1c81d51700, child_tidptr=0x7f1c81d519d0) = 106157 
+ 13:43:25.442188 prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0 
+ 13:43:25.442227 mmap(NULL, 8392704, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x7f1c80d50000 
+ 13:43:25.442263 mprotect(0x7f1c80d51000, 8388608, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.442307 clone(child_stack=0x7f1c8154ff70, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tid=[106158], tls=0x7f1c81550700, child_tidptr=0x7f1c815509d0) = 106158 
+ 13:43:25.442373 prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0 
+ 13:43:25.442411 mmap(NULL, 8392704, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x7f1c8054f000 
+ 13:43:25.442445 mprotect(0x7f1c80550000, 8388608, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.442491 clone(child_stack=0x7f1c80d4ef70, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tid=[106159], tls=0x7f1c80d4f700, child_tidptr=0x7f1c80d4f9d0) = 106159 
+ 13:43:25.442551 futex(0x7ffebd9f3a58, FUTEX_WAIT_PRIVATE, 0, NULL) = 0 
+ 13:43:25.442616 futex(0x7ffebd9f3a00, FUTEX_WAIT_PRIVATE, 2, NULL) = 0 
+ 13:43:25.442722 futex(0x7ffebd9f3a00, FUTEX_WAKE_PRIVATE, 1) = 0 
+ 13:43:25.442757 futex(0x7ffebd9f3a5c, FUTEX_WAIT_PRIVATE, 0, NULL) = 0 
+ 13:43:25.442799 futex(0x7ffebd9f3a00, FUTEX_WAIT_PRIVATE, 2, NULL) = 0 
+ 13:43:25.442834 futex(0x7ffebd9f3a00, FUTEX_WAKE_PRIVATE, 1) = 0 
+ 13:43:25.442863 futex(0x7ffebd9f3a58, FUTEX_WAIT_PRIVATE, 0, NULL) = 0 
+ 13:43:25.442913 futex(0x7ffebd9f3a00, FUTEX_WAIT_PRIVATE, 2, NULL) = 0 
+ 13:43:25.442948 futex(0x7ffebd9f3a00, FUTEX_WAKE_PRIVATE, 1) = 0 
+ 13:43:25.442978 futex(0x7ffebd9f3a5c, FUTEX_WAIT_PRIVATE, 0, NULL) = 0 
+ 13:43:25.443016 futex(0x7ffebd9f3a00, FUTEX_WAIT_PRIVATE, 2, NULL) = 0 
+ 13:43:25.443098 futex(0x7ffebd9f3a00, FUTEX_WAKE_PRIVATE, 1) = 0 
+ 13:43:25.443293 brk(0x5337000)          = 0x5337000 
+ 13:43:25.443593 epoll_create1(EPOLL_CLOEXEC) = 13 
+ 13:43:25.443645 pipe2([14, 15], O_NONBLOCK|O_CLOEXEC) = 0 
+ 13:43:25.443693 eventfd2(0, EFD_CLOEXEC|EFD_NONBLOCK) = 16 
+ 13:43:25.443827 brk(0x5358000)          = 0x5358000 
+ 13:43:25.443947 openat(AT_FDCWD, "/sys/fs/cgroup/memory/memory.limit_in_bytes", O_RDONLY|O_CLOEXEC) = 17 
+ 13:43:25.444011 read(17, "9223372036854771712\n", 31) = 20 
+ 13:43:25.444056 close(17)               = 0 
+ 13:43:25.444102 openat(AT_FDCWD, "/proc/meminfo", O_RDONLY|O_CLOEXEC) = 17 
+ 13:43:25.444162 read(17, "MemTotal:        1004892 kB\nMemF"..., 4095) = 1447 
+ 13:43:25.444216 close(17)               = 0 
+ 13:43:25.444593 mmap(NULL, 1269760, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f1c80419000 
+ 13:43:25.452826 brk(0x5379000)          = 0x5379000 
+ 13:43:25.453035 brk(0x53a1000)          = 0x53a1000 
+ 13:43:25.453210 getpid()                = 106154 
+ 13:43:25.453322 futex(0x45ab448, FUTEX_WAKE_PRIVATE, 2147483647) = 0 
+ 13:43:25.453372 futex(0x45ab308, FUTEX_WAKE_PRIVATE, 2147483647) = 0 
+ 13:43:25.453406 futex(0x45ab2fc, FUTEX_WAKE_PRIVATE, 2147483647) = 0 
+ 13:43:25.453436 futex(0x45ab2f4, FUTEX_WAKE_PRIVATE, 2147483647) = 0 
+ 13:43:25.453467 getpid()                = 106154 
+ 13:43:25.453521 getrandom("\x0f\x19\xe8\x2c\xc1\x47\xfd\x9b\xcc\xb5\x44\xfa\xe4\x71\xf9\x97\xe2\xfa\x9a\x5f\x99\x31\x95\xc3\xee\x94\xd1\xbd\xdc\xd4\xef\x54", 32, 0) = 32 
+ 13:43:25.453572 getpid()                = 106154 
+ 13:43:25.453609 futex(0x45ab418, FUTEX_WAKE_PRIVATE, 2147483647) = 0 
+ 13:43:25.453647 getpid()                = 106154 
+ 13:43:25.453680 getpid()                = 106154 
+ 13:43:25.453717 getpid()                = 106154 
+ 13:43:25.453747 getpid()                = 106154 
+ 13:43:25.453791 mmap(0x143ab233b000, 134217728, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0x143ab233b000 
+ 13:43:25.453928 brk(0x53c2000)          = 0x53c2000 
+ 13:43:25.454030 mmap(0x122891b40000, 520192, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0x122891b40000 
+ 13:43:25.454070 munmap(0x122891b80000, 258048) = 0 
+ 13:43:25.454108 mprotect(0x122891b40000, 262144, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.454492 getpid()                = 106154 
+ 13:43:25.454530 getpid()                = 106154 
+ 13:43:25.454613 munmap(0x122891b68000, 98304) = 0 
+ 13:43:25.454657 mprotect(0x122891b40000, 163840, PROT_READ) = 0 
+ 13:43:25.454740 mmap(0x128c1d200000, 520192, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0x128c1d200000 
+ 13:43:25.454799 munmap(0x128c1d240000, 258048) = 0 
+ 13:43:25.454875 mprotect(0x128c1d200000, 262144, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.454965 mmap(0xdb6ece00000, 520192, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0xdb6ece00000 
+ 13:43:25.455024 munmap(0xdb6ece40000, 258048) = 0 
+ 13:43:25.455063 mprotect(0xdb6ece00000, 262144, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.455113 mmap(0x31c8a35c0000, 520192, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0x31c8a35c0000 
+ 13:43:25.455150 munmap(0x31c8a3600000, 258048) = 0 
+ 13:43:25.455183 mprotect(0x31c8a35c0000, 262144, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.455253 mmap(0x2047fb9c0000, 520192, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0x2047fb9c0000 
+ 13:43:25.455333 munmap(0x2047fba00000, 258048) = 0 
+ 13:43:25.455410 mprotect(0x2047fb9c0000, 262144, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.455499 getpid()                = 106154 
+ 13:43:25.455536 getpid()                = 106154 
+ 13:43:25.455629 mmap(0x73f40340000, 520192, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0x73f40340000 
+ 13:43:25.455672 munmap(0x73f40380000, 258048) = 0 
+ 13:43:25.455707 mprotect(0x73f40340000, 262144, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.455837 mmap(0x1b89e9140000, 520192, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0x1b89e9140000 
+ 13:43:25.455875 munmap(0x1b89e9180000, 258048) = 0 
+ 13:43:25.455909 mprotect(0x1b89e9140000, 262144, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.456048 mmap(0x281e95b80000, 520192, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0x281e95b80000 
+ 13:43:25.456086 munmap(0x281e95bc0000, 258048) = 0 
+ 13:43:25.456120 mprotect(0x281e95b80000, 262144, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.456245 mmap(0x1ee9fc840000, 520192, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0x1ee9fc840000 
+ 13:43:25.456500 munmap(0x1ee9fc880000, 258048) = 0 
+ 13:43:25.456584 mprotect(0x1ee9fc840000, 262144, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.456762 mmap(0x3be87a680000, 520192, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0x3be87a680000 
+ 13:43:25.456822 munmap(0x3be87a6c0000, 258048) = 0 
+ 13:43:25.456876 mprotect(0x3be87a680000, 262144, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.457174 mmap(0x73e0700000, 520192, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0x73e0700000 
+ 13:43:25.457246 munmap(0x73e0740000, 258048) = 0 
+ 13:43:25.457310 mprotect(0x73e0700000, 262144, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.457466 mprotect(0x143ab2340000, 262144, PROT_NONE) = 0 
+ 13:43:25.457537 madvise(0x143ab2340000, 262144, MADV_DONTNEED) = 0 
+ 13:43:25.457581 mprotect(0x143ab2340000, 8192, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.457643 mprotect(0x143ab2342000, 4096, PROT_NONE) = 0 
+ 13:43:25.457678 madvise(0x143ab2342000, 4096, MADV_DONTNEED) = 0 
+ 13:43:25.457709 mprotect(0x143ab2343000, 245760, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.457743 mprotect(0x143ab237f000, 4096, PROT_NONE) = 0 
+ 13:43:25.457773 madvise(0x143ab237f000, 4096, MADV_DONTNEED) = 0 
+ 13:43:25.457892 mmap(0x2d9c12500000, 520192, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0x2d9c12500000 
+ 13:43:25.457933 munmap(0x2d9c12540000, 258048) = 0 
+ 13:43:25.457968 mprotect(0x2d9c12500000, 262144, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.459937 brk(0x53e3000)          = 0x53e3000 
+ 13:43:25.460946 brk(0x5405000)          = 0x5405000 
+ 13:43:25.463313 munmap(0x73e0713000, 184320) = 0 
+ 13:43:25.463471 mprotect(0x143ab2358000, 4096, PROT_NONE) = 0 
+ 13:43:25.463552 madvise(0x143ab2358000, 4096, MADV_DONTNEED) = 0 
+ 13:43:25.463609 mprotect(0x143ab2359000, 159744, PROT_NONE) = 0 
+ 13:43:25.463662 madvise(0x143ab2359000, 159744, MADV_DONTNEED) = 0 
+ 13:43:25.463715 munmap(0x2d9c12502000, 253952) = 0 
+ 13:43:25.463775 mprotect(0x143ab2343000, 86016, PROT_READ|PROT_EXEC) = 0 
+ 13:43:25.463939 munmap(0x7f1c80419000, 1269760) = 0 
+ 13:43:25.464228 readlink("/proc/self/exe", "/usr/bin/node", 8191) = 13 
+ 13:43:25.464389 getuid()                = 0 
+ 13:43:25.464447 geteuid()               = 0 
+ 13:43:25.464495 getgid()                = 0 
+ 13:43:25.464542 getegid()               = 0 
+ 13:43:25.464616 futex(0x459c348, FUTEX_WAKE_PRIVATE, 2147483647) = 0 
+ 13:43:25.464701 mmap(0x17589f780000, 520192, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0x17589f780000 
+ 13:43:25.464780 munmap(0x17589f7c0000, 258048) = 0 
+ 13:43:25.464852 mprotect(0x17589f780000, 262144, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.464979 brk(0x5462000)          = 0x5462000 
+ 13:43:25.467093 mmap(0x2df2b0dc0000, 520192, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0x2df2b0dc0000 
+ 13:43:25.467229 munmap(0x2df2b0e00000, 258048) = 0 
+ 13:43:25.467293 mprotect(0x2df2b0dc0000, 262144, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.467510 mmap(0x39ced1100000, 520192, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0x39ced1100000 
+ 13:43:25.467580 munmap(0x39ced1140000, 258048) = 0 
+ 13:43:25.467645 mprotect(0x39ced1100000, 262144, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.467947 mmap(0x22642200000, 520192, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0x22642200000 
+ 13:43:25.468003 munmap(0x22642240000, 258048) = 0 
+ 13:43:25.468041 mprotect(0x22642200000, 262144, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.472392 getpid()                = 106154 
+ 13:43:25.472495 futex(0x45a8488, FUTEX_WAKE_PRIVATE, 2147483647) = 0 
+ 13:43:25.472585 rt_sigprocmask(SIG_SETMASK, ~[RTMIN RT_1], [USR1], 8) = 0 
+ 13:43:25.472673 mmap(NULL, 36864, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x7f1c80546000 
+ 13:43:25.472742 mprotect(0x7f1c80547000, 32768, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.472852 clone(child_stack=0x7f1c8054df70, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tid=[106160], tls=0x7f1c8054e700, child_tidptr=0x7f1c8054e9d0) = 106160 
+ 13:43:25.472972 rt_sigprocmask(SIG_SETMASK, [USR1], NULL, 8) = 0 
+ 13:43:25.473046 rt_sigaction(SIGUSR1, {sa_handler=0xb8b6a0, sa_mask=~[RTMIN RT_1], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.473123 rt_sigprocmask(SIG_UNBLOCK, [USR1], NULL, 8) = 0 
+ 13:43:25.476209 getpid()                = 106154 
+ 13:43:25.476722 getcwd("/root/code/40ms", 4096) = 16 
+ 13:43:25.481023 mmap(0x3c877ed80000, 520192, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0x3c877ed80000 
+ 13:43:25.481120 munmap(0x3c877edc0000, 258048) = 0 
+ 13:43:25.481165 mprotect(0x3c877ed80000, 262144, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.486878 getuid()                = 0 
+ 13:43:25.486975 geteuid()               = 0 
+ 13:43:25.487050 getgid()                = 0 
+ 13:43:25.487085 getegid()               = 0 
+ 13:43:25.487132 getuid()                = 0 
+ 13:43:25.487164 geteuid()               = 0 
+ 13:43:25.487193 getgid()                = 0 
+ 13:43:25.487222 getegid()               = 0 
+ 13:43:25.488557 statx(AT_FDCWD, "/root/code/40ms/slow.js", AT_STATX_SYNC_AS_STAT, STATX_ALL, {stx_mask=STATX_ALL, stx_attributes=0, stx_mode=S_IFREG|0644, stx_size=618, ...}) = 0 
+ 13:43:25.489956 statx(AT_FDCWD, "/root", AT_STATX_SYNC_AS_STAT|AT_SYMLINK_NOFOLLOW, STATX_ALL, {stx_mask=STATX_ALL, stx_attributes=0, stx_mode=S_IFDIR|0700, stx_size=4096, ...}) = 0 
+ 13:43:25.490180 statx(AT_FDCWD, "/root/code", AT_STATX_SYNC_AS_STAT|AT_SYMLINK_NOFOLLOW, STATX_ALL, {stx_mask=STATX_ALL, stx_attributes=0, stx_mode=S_IFDIR|0755, stx_size=4096, ...}) = 0 
+ 13:43:25.490272 statx(AT_FDCWD, "/root/code/40ms", AT_STATX_SYNC_AS_STAT|AT_SYMLINK_NOFOLLOW, STATX_ALL, {stx_mask=STATX_ALL, stx_attributes=0, stx_mode=S_IFDIR|0755, stx_size=4096, ...}) = 0 
+ 13:43:25.490348 statx(AT_FDCWD, "/root/code/40ms/slow.js", AT_STATX_SYNC_AS_STAT|AT_SYMLINK_NOFOLLOW, STATX_ALL, {stx_mask=STATX_ALL, stx_attributes=0, stx_mode=S_IFREG|0644, stx_size=618, ...}) = 0 
+ 13:43:25.490863 openat(AT_FDCWD, "/root/code/40ms/package.json", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory) 
+ 13:43:25.491030 openat(AT_FDCWD, "/root/code/package.json", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory) 
+ 13:43:25.491135 openat(AT_FDCWD, "/root/package.json", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory) 
+ 13:43:25.491212 openat(AT_FDCWD, "/package.json", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory) 
+ 13:43:25.493921 openat(AT_FDCWD, "/root/code/40ms/slow.js", O_RDONLY|O_CLOEXEC) = 17 
+ 13:43:25.494079 statx(17, "", AT_STATX_SYNC_AS_STAT|AT_EMPTY_PATH, STATX_ALL, {stx_mask=STATX_ALL, stx_attributes=0, stx_mode=S_IFREG|0644, stx_size=618, ...}) = 0 
+ 13:43:25.494887 read(17, "const http = require('http')\ncon"..., 618) = 618 
+ 13:43:25.495095 close(17)               = 0 
+ 13:43:25.496612 mprotect(0x143ab2380000, 262144, PROT_NONE) = 0 
+ 13:43:25.496673 madvise(0x143ab2380000, 262144, MADV_DONTNEED) = 0 
+ 13:43:25.496826 mprotect(0x143ab2380000, 8192, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.496871 mprotect(0x143ab2382000, 4096, PROT_NONE) = 0 
+ 13:43:25.496903 madvise(0x143ab2382000, 4096, MADV_DONTNEED) = 0 
+ 13:43:25.496934 mprotect(0x143ab2383000, 245760, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.496968 mprotect(0x143ab23bf000, 4096, PROT_NONE) = 0 
+ 13:43:25.496999 madvise(0x143ab23bf000, 4096, MADV_DONTNEED) = 0 
+ 13:43:25.497058 mprotect(0x143ab2383000, 245760, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.497099 mprotect(0x143ab2383000, 245760, PROT_READ|PROT_EXEC) = 0 
+ 13:43:25.498423 mmap(0x14b869000000, 520192, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0x14b869000000 
+ 13:43:25.498499 munmap(0x14b869040000, 258048) = 0 
+ 13:43:25.498586 mprotect(0x14b869000000, 262144, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.504639 brk(0x5484000)          = 0x5484000 
+ 13:43:25.505711 mprotect(0x143ab2383000, 245760, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.505820 mprotect(0x143ab2383000, 245760, PROT_READ|PROT_EXEC) = 0 
+ 13:43:25.506952 brk(0x54a8000)          = 0x54a8000 
+ 13:43:25.507656 brk(0x54d0000)          = 0x54d0000 
+ 13:43:25.510067 openat(AT_FDCWD, "/dev/null", O_RDONLY|O_CLOEXEC) = 17 
+ 13:43:25.510742 mprotect(0x143ab2383000, 245760, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.510824 mprotect(0x143ab2383000, 245760, PROT_READ|PROT_EXEC) = 0 
+ 13:43:25.511509 mprotect(0x143ab2383000, 245760, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.511618 mprotect(0x143ab2383000, 245760, PROT_READ|PROT_EXEC) = 0 
+ 13:43:25.512488 openat(AT_FDCWD, "/etc/resolv.conf", O_RDONLY) = 18 
+ 13:43:25.512581 fstat(18, {st_mode=S_IFREG|0644, st_size=708, ...}) = 0 
+ 13:43:25.512631 read(18, "# This file is managed by man:sy"..., 4096) = 708 
+ 13:43:25.512697 read(18, "", 4096)      = 0 
+ 13:43:25.512748 close(18)               = 0 
+ 13:43:25.512821 openat(AT_FDCWD, "/etc/nsswitch.conf", O_RDONLY) = 18 
+ 13:43:25.512877 fstat(18, {st_mode=S_IFREG|0644, st_size=510, ...}) = 0 
+ 13:43:25.512918 read(18, "# /etc/nsswitch.conf\n#\n# Example"..., 4096) = 510 
+ 13:43:25.512963 read(18, "", 4096)      = 0 
+ 13:43:25.512997 close(18)               = 0 
+ 13:43:25.513031 uname({sysname="Linux", nodename="mysterybox-client", ...}) = 0 
+ 13:43:25.513070 openat(AT_FDCWD, "/dev/urandom", O_RDONLY) = 18 
+ 13:43:25.513131 fstat(18, {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x9), ...}) = 0 
+ 13:43:25.513173 ioctl(18, TCGETS, 0x7ffebd9f1e60) = -1 EINVAL (Invalid argument) 
+ 13:43:25.513216 read(18, "z\250\0033$\224\366\240#\t\264O\332\376\t\303V<\202\204\376\262!%F\204\232\1V\356\1\260"..., 4096) = 4096 
+ 13:43:25.513323 close(18)               = 0 
+ 13:43:25.514525 prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0 
+ 13:43:25.514626 mmap(NULL, 8392704, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x7f1c7b7ff000 
+ 13:43:25.514725 mprotect(0x7f1c7b800000, 8388608, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.514815 clone(child_stack=0x7f1c7bffef70, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tid=[106161], tls=0x7f1c7bfff700, child_tidptr=0x7f1c7bfff9d0) = 106161 
+ 13:43:25.514915 prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0 
+ 13:43:25.514956 mmap(NULL, 8392704, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x7f1c7affe000 
+ 13:43:25.514994 mprotect(0x7f1c7afff000, 8388608, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.515059 clone(child_stack=0x7f1c7b7fdf70, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tid=[106162], tls=0x7f1c7b7fe700, child_tidptr=0x7f1c7b7fe9d0) = 106162 
+ 13:43:25.515197 prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0 
+ 13:43:25.515268 mmap(NULL, 8392704, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x7f1c7a7fd000 
+ 13:43:25.515328 mprotect(0x7f1c7a7fe000, 8388608, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.515496 clone(child_stack=0x7f1c7affcf70, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tid=[106163], tls=0x7f1c7affd700, child_tidptr=0x7f1c7affd9d0) = 106163 
+ 13:43:25.515625 prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0 
+ 13:43:25.515694 mmap(NULL, 8392704, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x7f1c79ffc000 
+ 13:43:25.515752 mprotect(0x7f1c79ffd000, 8388608, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.515808 clone(child_stack=0x7f1c7a7fbf70, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tid=[106164], tls=0x7f1c7a7fc700, child_tidptr=0x7f1c7a7fc9d0) = 106164 
+ 13:43:25.515879 futex(0x7ffebd9f1e40, FUTEX_WAIT_BITSET_PRIVATE|FUTEX_CLOCK_REALTIME, 0, NULL, FUTEX_BITSET_MATCH_ANY) = 0 
+ 13:43:25.515940 futex(0x7ffebd9f1e40, FUTEX_WAIT_BITSET_PRIVATE|FUTEX_CLOCK_REALTIME, 0, NULL, FUTEX_BITSET_MATCH_ANY) = 0 
+ 13:43:25.515981 futex(0x7ffebd9f1e40, FUTEX_WAIT_BITSET_PRIVATE|FUTEX_CLOCK_REALTIME, 0, NULL, FUTEX_BITSET_MATCH_ANY) = 0 
+ 13:43:25.516019 futex(0x7ffebd9f1e40, FUTEX_WAIT_BITSET_PRIVATE|FUTEX_CLOCK_REALTIME, 0, NULL, FUTEX_BITSET_MATCH_ANY) = 0 
+ 13:43:25.516058 futex(0x45a8010, FUTEX_WAKE_PRIVATE, 2147483647) = 0 
+ 13:43:25.516089 futex(0x45a8008, FUTEX_WAKE_PRIVATE, 1) = 1 
+ 13:43:25.516958 futex(0x45a8008, FUTEX_WAKE_PRIVATE, 1) = 1 
+ 13:43:25.520021 epoll_ctl(13, EPOLL_CTL_ADD, 14, {EPOLLIN, {u32=14, u64=14}}) = 0 
+ 13:43:25.520100 epoll_ctl(13, EPOLL_CTL_ADD, 16, {EPOLLIN, {u32=16, u64=16}}) = 0 
+ 13:43:25.520141 epoll_wait(13, [{EPOLLIN, {u32=16, u64=16}}], 1024, 0) = 1 
+ 13:43:25.520181 read(16, "\1\0\0\0\0\0\0\0", 1024) = 8 
+ 13:43:25.520585 socket(AF_INET, SOCK_STREAM|SOCK_CLOEXEC|SOCK_NONBLOCK, IPPROTO_IP) = 18 
+ 13:43:25.520649 connect(18, {sa_family=AF_INET, sin_port=htons(8000), sin_addr=inet_addr("1.2.3.4")}, 16) = -1 EINPROGRESS (Operation now in progress) 
+ 13:43:25.521263 mprotect(0x143ab2383000, 245760, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.521336 mprotect(0x143ab2383000, 245760, PROT_READ|PROT_EXEC) = 0 
+ 13:43:25.522913 futex(0x45a8008, FUTEX_WAKE_PRIVATE, 1) = 1 
+ 13:43:25.522979 futex(0x45a7fa0, FUTEX_WAKE_PRIVATE, 1) = 1 
+ 13:43:25.523063 epoll_ctl(13, EPOLL_CTL_ADD, 18, {EPOLLOUT, {u32=18, u64=18}}) = 0 
+ 13:43:25.523117 epoll_wait(13, [{EPOLLIN, {u32=16, u64=16}}, {EPOLLOUT, {u32=18, u64=18}}], 1024, 0) = 2 
+ 13:43:25.523158 read(16, "\1\0\0\0\0\0\0\0", 1024) = 8 
+ 13:43:25.523642 futex(0x45a800c, FUTEX_WAKE_PRIVATE, 1) = 1 
+ 13:43:25.523701 futex(0x45a7fa0, FUTEX_WAKE_PRIVATE, 1) = 1 
+ 13:43:25.523766 getsockopt(18, SOL_SOCKET, SO_ERROR, [0], [4]) = 0 
+ 13:43:25.524529 write(18, "POST / HTTP/1.1\r\nHost: mysterybo"..., 107) = 107 
+ 13:43:25.524845 mmap(0x3ea6a6e40000, 520192, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0x3ea6a6e40000 
+ 13:43:25.524906 munmap(0x3ea6a6e80000, 258048) = 0 
+ 13:43:25.524948 mprotect(0x3ea6a6e40000, 262144, PROT_READ|PROT_WRITE) = 0 
+ 13:43:25.525314 epoll_ctl(13, EPOLL_CTL_ADD, 18, {EPOLLIN, {u32=18, u64=18}}) = -1 EEXIST (File exists) 
+ 13:43:25.525400 epoll_ctl(13, EPOLL_CTL_MOD, 18, {EPOLLIN, {u32=18, u64=18}}) = 0 
+ 13:43:25.525457 epoll_wait(13, [{EPOLLIN, {u32=16, u64=16}}], 1024, 0) = 1 
+ 13:43:25.525510 read(16, "\1\0\0\0\0\0\0\0", 1024) = 8 
+ 13:43:25.525730 futex(0x45a800c, FUTEX_WAKE_PRIVATE, 1) = 1 
+ 13:43:25.525801 futex(0x45a7fa0, FUTEX_WAKE_PRIVATE, 1) = 1 
+ 13:43:25.525884 epoll_wait(13, [{EPOLLIN, {u32=16, u64=16}}], 1024, 0) = 1 
+ 13:43:25.525931 read(16, "\1\0\0\0\0\0\0\0", 1024) = 8 
+ 13:43:25.526175 futex(0x45a800c, FUTEX_WAKE_PRIVATE, 1) = 1 
+ 13:43:25.526272 futex(0x45a7fa0, FUTEX_WAKE_PRIVATE, 1) = 1 
+ 13:43:25.526398 epoll_wait(13, [{EPOLLIN, {u32=16, u64=16}}], 1024, 0) = 1 
+ 13:43:25.526473 read(16, "\1\0\0\0\0\0\0\0", 1024) = 8 
+ 13:43:25.527839 write(18, "buy some milk\n", 14) = 14 
+ 13:43:25.528095 epoll_ctl(13, EPOLL_CTL_MOD, 18, {EPOLLIN, {u32=18, u64=18}}) = 0 
+ 13:43:25.528154 epoll_wait(13, [], 1024, 0) = 0 
+ 13:43:25.528190 epoll_wait(13, [{EPOLLIN|EPOLLERR|EPOLLHUP, {u32=18, u64=18}}], 1024, -1) = 1 
+ 13:43:25.568621 read(18, "HTTP/1.1 200 OK\r\nContent-Length:"..., 65536) = 41 
+ 13:43:25.572025 ioctl(1, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.573094 ioctl(1, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.573197 fcntl(1, F_GETFL)       = 0x2 (flags O_RDWR) 
+ 13:43:25.573260 ioctl(1, TIOCGPTN, 0x7ffebd9ebd60) = -1 ENOTTY (Inappropriate ioctl for device) 
+ 13:43:25.573333 ioctl(1, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.573398 fstat(1, {st_mode=S_IFCHR|0600, st_rdev=makedev(0x88, 0), ...}) = 0 
+ 13:43:25.573469 readlink("/proc/self/fd/1", "/dev/pts/0", 255) = 10 
+ 13:43:25.573586 stat("/dev/pts/0", {st_mode=S_IFCHR|0600, st_rdev=makedev(0x88, 0), ...}) = 0 
+ 13:43:25.573667 openat(AT_FDCWD, "/dev/pts/0", O_RDWR|O_NOCTTY|O_CLOEXEC) = 19 
+ 13:43:25.573760 dup3(19, 1, O_CLOEXEC)  = 1 
+ 13:43:25.573844 ioctl(19, FIONBIO, [1]) = 0 
+ 13:43:25.574385 ioctl(19, FIONBIO, [0]) = 0 
+ 13:43:25.574486 ioctl(19, TIOCGWINSZ, {ws_row=36, ws_col=79, ws_xpixel=0, ws_ypixel=0}) = 0 
+ 13:43:25.574765 rt_sigprocmask(SIG_SETMASK, ~[RTMIN RT_1], [], 8) = 0 
+ 13:43:25.574913 read(4, "*", 1)         = 1 
+ 13:43:25.574990 rt_sigaction(SIGWINCH, {sa_handler=0x148a710, sa_mask=~[RTMIN RT_1], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.575170 write(5, "*", 1)        = 1 
+ 13:43:25.575249 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0 
+ 13:43:25.577648 write(19, "Time elapsed: \33[33m50\33[39m milli"..., 40) = 40 
+ 13:43:25.581054 shutdown(18, SHUT_WR)   = -1 ENOTCONN (Transport endpoint is not connected) 
+ 13:43:25.582292 ioctl(2, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.582444 ioctl(2, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.582526 fcntl(2, F_GETFL)       = 0x2 (flags O_RDWR) 
+ 13:43:25.582587 ioctl(2, TIOCGPTN, 0x7ffebd9ef6c0) = -1 ENOTTY (Inappropriate ioctl for device) 
+ 13:43:25.582656 ioctl(2, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.582754 fstat(2, {st_mode=S_IFCHR|0600, st_rdev=makedev(0x88, 0), ...}) = 0 
+ 13:43:25.582827 readlink("/proc/self/fd/2", "/dev/pts/0", 255) = 10 
+ 13:43:25.582939 stat("/dev/pts/0", {st_mode=S_IFCHR|0600, st_rdev=makedev(0x88, 0), ...}) = 0 
+ 13:43:25.583020 openat(AT_FDCWD, "/dev/pts/0", O_RDWR|O_NOCTTY|O_CLOEXEC) = 20 
+ 13:43:25.583122 dup3(20, 2, O_CLOEXEC)  = 2 
+ 13:43:25.583182 ioctl(20, FIONBIO, [1]) = 0 
+ 13:43:25.583477 ioctl(20, FIONBIO, [0]) = 0 
+ 13:43:25.583577 ioctl(20, TIOCGWINSZ, {ws_row=36, ws_col=79, ws_xpixel=0, ws_ypixel=0}) = 0 
+ 13:43:25.583736 epoll_ctl(13, EPOLL_CTL_DEL, 18, 0x7ffebd9efb14) = 0 
+ 13:43:25.583815 close(18)               = 0 
+ 13:43:25.585254 fstat(0, {st_mode=S_IFCHR|0600, st_rdev=makedev(0x88, 0), ...}) = 0 
+ 13:43:25.585363 fcntl(0, F_GETFL)       = 0x2 (flags O_RDWR) 
+ 13:43:25.585423 rt_sigprocmask(SIG_BLOCK, [TTOU], NULL, 8) = 0 
+ 13:43:25.585488 ioctl(0, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.585554 ioctl(0, SNDCTL_TMR_START or TCSETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.585618 ioctl(0, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.585681 rt_sigprocmask(SIG_UNBLOCK, [TTOU], NULL, 8) = 0 
+ 13:43:25.585741 fstat(1, {st_mode=S_IFCHR|0600, st_rdev=makedev(0x88, 0), ...}) = 0 
+ 13:43:25.585803 fcntl(1, F_GETFL)       = 0x8002 (flags O_RDWR|O_LARGEFILE) 
+ 13:43:25.585857 rt_sigprocmask(SIG_BLOCK, [TTOU], NULL, 8) = 0 
+ 13:43:25.585916 ioctl(1, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.585979 ioctl(1, SNDCTL_TMR_START or TCSETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.586039 ioctl(1, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.586100 rt_sigprocmask(SIG_UNBLOCK, [TTOU], NULL, 8) = 0 
+ 13:43:25.586160 fstat(2, {st_mode=S_IFCHR|0600, st_rdev=makedev(0x88, 0), ...}) = 0 
+ 13:43:25.586221 fcntl(2, F_GETFL)       = 0x8002 (flags O_RDWR|O_LARGEFILE) 
+ 13:43:25.586277 rt_sigprocmask(SIG_BLOCK, [TTOU], NULL, 8) = 0 
+ 13:43:25.586342 ioctl(2, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.586404 ioctl(2, SNDCTL_TMR_START or TCSETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.586465 ioctl(2, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.586525 rt_sigprocmask(SIG_UNBLOCK, [TTOU], NULL, 8) = 0 
+ 13:43:25.586584 rt_sigaction(SIGHUP, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.586652 rt_sigaction(SIGINT, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.586745 rt_sigaction(SIGQUIT, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.586810 rt_sigaction(SIGILL, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.586868 rt_sigaction(SIGTRAP, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.586928 rt_sigaction(SIGABRT, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.587013 rt_sigaction(SIGBUS, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.587082 rt_sigaction(SIGFPE, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.587141 rt_sigaction(SIGUSR1, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.587201 rt_sigaction(SIGSEGV, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.587260 rt_sigaction(SIGUSR2, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.587317 rt_sigaction(SIGPIPE, {sa_handler=SIG_IGN, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.587441 rt_sigaction(SIGALRM, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.587510 rt_sigaction(SIGTERM, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.587567 rt_sigaction(SIGSTKFLT, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.587628 rt_sigaction(SIGCHLD, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.587687 rt_sigaction(SIGCONT, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.587746 rt_sigaction(SIGTSTP, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.587803 rt_sigaction(SIGTTIN, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.587861 rt_sigaction(SIGTTOU, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.587920 rt_sigaction(SIGURG, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.587983 rt_sigaction(SIGXCPU, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.588044 rt_sigaction(SIGXFSZ, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.588105 rt_sigaction(SIGVTALRM, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.588162 rt_sigaction(SIGWINCH, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.588221 rt_sigaction(SIGIO, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.588280 rt_sigaction(SIGPWR, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.588338 rt_sigaction(SIGSYS, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.588429 epoll_ctl(13, EPOLL_CTL_DEL, 19, 0x7ffebd9f3754) = -1 ENOENT (No such file or directory) 
+ 13:43:25.588502 close(19)               = 0 
+ 13:43:25.588559 rt_sigprocmask(SIG_SETMASK, ~[RTMIN RT_1], [], 8) = 0 
+ 13:43:25.588630 read(4, "*", 1)         = 1 
+ 13:43:25.588699 rt_sigaction(SIGWINCH, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=SA_RESTORER, sa_restorer=0x7f1c82f603c0}, NULL, 8) = 0 
+ 13:43:25.588763 write(5, "*", 1)        = 1 
+ 13:43:25.588823 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0 
+ 13:43:25.588885 epoll_ctl(13, EPOLL_CTL_DEL, 20, 0x7ffebd9f3754) = -1 ENOENT (No such file or directory) 
+ 13:43:25.588943 close(20)               = 0 
+ 13:43:25.589004 epoll_wait(13, [], 1024, 0) = 0 
+ 13:43:25.589157 epoll_wait(13, [], 1024, 0) = 0 
+ 13:43:25.589432 mprotect(0x2047fb9c0000, 262144, PROT_NONE) = 0 
+ 13:43:25.589526 madvise(0x2047fb9c0000, 262144, MADV_DONTNEED) = 0 
+ 13:43:25.589618 mprotect(0x31c8a35c0000, 262144, PROT_NONE) = 0 
+ 13:43:25.589685 madvise(0x31c8a35c0000, 262144, MADV_DONTNEED) = 0 
+ 13:43:25.589777 mprotect(0xdb6ece00000, 262144, PROT_NONE) = 0 
+ 13:43:25.589862 madvise(0xdb6ece00000, 262144, MADV_DONTNEED) = 0 
+ 13:43:25.589964 mprotect(0x128c1d200000, 262144, PROT_NONE) = 0 
+ 13:43:25.590031 madvise(0x128c1d200000, 262144, MADV_DONTNEED) = 0 
+ 13:43:25.590138 munmap(0x73f40340000, 262144) = 0 
+ 13:43:25.590312 munmap(0x1b89e9140000, 262144) = 0 
+ 13:43:25.590426 munmap(0x281e95b80000, 262144) = 0 
+ 13:43:25.590543 munmap(0x1ee9fc840000, 262144) = 0 
+ 13:43:25.590684 munmap(0x3be87a680000, 262144) = 0 
+ 13:43:25.590810 munmap(0x73e0700000, 77824) = 0 
+ 13:43:25.590907 munmap(0x2df2b0dc0000, 262144) = 0 
+ 13:43:25.591029 munmap(0x39ced1100000, 262144) = 0 
+ 13:43:25.591148 munmap(0x22642200000, 262144) = 0 
+ 13:43:25.591267 munmap(0x3c877ed80000, 262144) = 0 
+ 13:43:25.591440 munmap(0x14b869000000, 262144) = 0 
+ 13:43:25.591566 munmap(0x3ea6a6e40000, 262144) = 0 
+ 13:43:25.591715 mprotect(0x143ab2340000, 262144, PROT_NONE) = 0 
+ 13:43:25.591816 madvise(0x143ab2340000, 262144, MADV_DONTNEED) = 0 
+ 13:43:25.591934 mprotect(0x143ab2380000, 262144, PROT_NONE) = 0 
+ 13:43:25.592007 madvise(0x143ab2380000, 262144, MADV_DONTNEED) = 0 
+ 13:43:25.592108 munmap(0x2d9c12500000, 8192) = 0 
+ 13:43:25.592191 munmap(0x17589f780000, 262144) = 0 
+ 13:43:25.592310 munmap(0x122891b40000, 163840) = 0 
+ 13:43:25.592418 munmap(0x128c1d200000, 262144) = 0 
+ 13:43:25.592495 munmap(0xdb6ece00000, 262144) = 0 
+ 13:43:25.592569 munmap(0x31c8a35c0000, 262144) = 0 
+ 13:43:25.592639 munmap(0x2047fb9c0000, 262144) = 0 
+ 13:43:25.592718 munmap(0x143ab233b000, 134217728) = 0 
+ 13:43:25.593003 futex(0x5314190, FUTEX_WAKE_PRIVATE, 2147483647) = 4 
+ 13:43:25.593117 futex(0x5314140, FUTEX_WAKE_PRIVATE, 1) = 1 
+ 13:43:25.593415 write(12, "\1\0\0\0\0\0\0\0", 8) = 8 
+ 13:43:25.595572 futex(0x7f1c82d539d0, FUTEX_WAIT, 106155, NULL) = -1 EAGAIN (Resource temporarily unavailable) 
+ 13:43:25.595824 munmap(0x7f1c82553000, 8392704) = 0 
+ 13:43:25.595933 epoll_ctl(3, EPOLL_CTL_ADD, 6, {EPOLLIN, {u32=6, u64=6}}) = 0 
+ 13:43:25.596014 epoll_ctl(3, EPOLL_CTL_ADD, 8, {EPOLLIN, {u32=8, u64=8}}) = 0 
+ 13:43:25.596084 epoll_wait(3, [], 1024, 0) = 0 
+ 13:43:25.596143 close(6)                = 0 
+ 13:43:25.596203 close(7)                = 0 
+ 13:43:25.596265 close(8)                = 0 
+ 13:43:25.596326 close(3)                = 0 
+ 13:43:25.596408 futex(0x45ab1c4, FUTEX_WAKE_PRIVATE, 2147483647) = 0 
+ 13:43:25.596503 fstat(0, {st_mode=S_IFCHR|0600, st_rdev=makedev(0x88, 0), ...}) = 0 
+ 13:43:25.596583 fcntl(0, F_GETFL)       = 0x2 (flags O_RDWR) 
+ 13:43:25.596641 rt_sigprocmask(SIG_BLOCK, [TTOU], NULL, 8) = 0 
+ 13:43:25.596703 ioctl(0, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.596781 ioctl(0, SNDCTL_TMR_START or TCSETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.596849 ioctl(0, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.596915 rt_sigprocmask(SIG_UNBLOCK, [TTOU], NULL, 8) = 0 
+ 13:43:25.596978 fstat(1, {st_mode=S_IFCHR|0600, st_rdev=makedev(0x88, 0), ...}) = 0 
+ 13:43:25.597043 fcntl(1, F_GETFL)       = 0x8002 (flags O_RDWR|O_LARGEFILE) 
+ 13:43:25.597099 rt_sigprocmask(SIG_BLOCK, [TTOU], NULL, 8) = 0 
+ 13:43:25.597158 ioctl(1, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.597220 ioctl(1, SNDCTL_TMR_START or TCSETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.597282 ioctl(1, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.597343 rt_sigprocmask(SIG_UNBLOCK, [TTOU], NULL, 8) = 0 
+ 13:43:25.597403 fstat(2, {st_mode=S_IFCHR|0600, st_rdev=makedev(0x88, 0), ...}) = 0 
+ 13:43:25.597469 fcntl(2, F_GETFL)       = 0x8002 (flags O_RDWR|O_LARGEFILE) 
+ 13:43:25.597524 rt_sigprocmask(SIG_BLOCK, [TTOU], NULL, 8) = 0 
+ 13:43:25.597585 ioctl(2, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.597649 ioctl(2, SNDCTL_TMR_START or TCSETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.597709 ioctl(2, TCGETS, {B38400 opost isig icanon echo ...}) = 0 
+ 13:43:25.597770 rt_sigprocmask(SIG_UNBLOCK, [TTOU], NULL, 8) = 0 
+ 13:43:25.598277 close(4)                = 0 
+ 13:43:25.598354 close(5)                = 0 
+ 13:43:25.598420 futex(0x45a800c, FUTEX_WAKE_PRIVATE, 1) = 1 
+ 13:43:25.598488 futex(0x45a7fa0, FUTEX_WAKE_PRIVATE, 1) = 1 
+ 13:43:25.598758 munmap(0x7f1c81d52000, 8392704) = 0 
+ 13:43:25.598876 munmap(0x7f1c81551000, 8392704) = 0 
+ 13:43:25.598961 munmap(0x7f1c80d50000, 8392704) = 0 
+ 13:43:25.599038 munmap(0x7f1c8054f000, 8392704) = 0 
+ 13:43:25.599222 exit_group(0)           = ? 
+ 13:43:25.601138 +++ exited with 0 +++

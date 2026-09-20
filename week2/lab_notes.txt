@@ -1,0 +1,49 @@
+Cisco commands
+enable - su
+conf term - settings
+interface INTERFACE NAME
+
+
+
+Notes from Temu
+
+Use putty to access the router console port
+(check windows device manager to see the com port, speed is the default 9600)
+
+Start the router and check the console logs while router boots
+
+Skip the initial configuration wizard (by answering no). ctrl + c exits the wizard if entered accidently
+
+Change the router name (become root/admin with enable, go to global configuration mode (conf term):
+
+Router> enable
+Router# conf term
+Router(config)# hostname somenamehere
+somenamehere(config)# exit
+
+show int   <- see the interfaces (ports) you have
+show run   <- see the shutdown command under the ethernet interface, we need to remove that
+
+Connect two routers together with ethernet ports (fa0/0 or gi0/0)
+Then remove the software lock with no shutdown command:
+
+router# conf term
+router(config)# interface nnnn  (i.e. nnnn is fastethernet0/0 or gigaethernet0/0 or something like that)
+router(config-if)# no shutdown
+router(config-if)# exit
+router(config)# exit
+router# sh run   <- see that shutdown was removed
+
+router# show cdp neighbor detail
+
+Setting IPs:
+
+conf term
+router(config)# interface nnnnnnnnnn  (i.e. interface fastethernet0/0 or gigaethernet0/0 or something like that)
+router(config-if)# ip address 192.168.0.x 255.255.255.0  <- agree with neighbor about the x. Other is .1, other is .2
+router(config-if)# exit
+router(config)# exit
+router# show run
+router# show int
+
+router# ping <neighbor_ip_address> <- i.e. ping 192.168.0.x
