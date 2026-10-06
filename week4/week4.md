@@ -72,3 +72,59 @@ I have installed **croc** on Android with `pkg install croc` (I use **termux** a
   - Server prints the text to the console or elsewhere
   - Save your source codes and work. You need scripts again during the course week #5 (Wireshark **protocol** analyzer assignments)
 - Use netstat or similar command line tools to check the TCP connection status (for example the Python server script LISTENING the selected TCP port)
+
+  ![](./src/img/tcp.png)
+
+  **_Figure 4.6_** — sequence of socket API calls and data flow for TCP (source: https://realpython.com/python-sockets/)
+
+  I don't have access to another machine now, so my app will run on localhost. I have created two files `tcp_server.py` and `tcp_client.py`.
+
+  ```python
+  # tcp_server.py
+  import socket
+
+  HOST = "0.0.0.0"  # listen on all interfaces so a remote client can connect too
+  PORT = 65432
+
+  with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
+      server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+      server_socket.bind((HOST, PORT))
+      server_socket.listen()
+      print(f"Server listening on {HOST}:{PORT}")
+
+      while True:
+          conn, addr = server_socket.accept()
+          with conn:
+              print(f"Connected by {addr}")
+              while True:
+                  data = conn.recv(1024)
+                  if not data:
+                      break
+                  print(f"Received from {addr}: {data.decode('ascii')}")
+              print(f"Disconnected: {addr}")
+
+  ```
+
+  ```python
+  # tcp_client.py
+  import socket
+
+  HOST = "127.0.0.1"  # localhost
+  PORT = 65432
+  MESSAGE = "Hello from the TCP client!"
+
+  with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_socket:
+      client_socket.connect((HOST, PORT))
+      client_socket.sendall(MESSAGE.encode("ascii"))
+      print(f"Sent: {MESSAGE}")
+  ```
+
+  ![](./src/img/tcp_client-server.png)
+
+  **_Figure 4.7_** — a line of text sent from the client and received by the server
+
+  ![](./src/img/netstat_listening.png)
+
+  **_Figure 4.8_** — tcp_server.py app is listening for all incoming connections on port 65432
+
+  After I stop the server app the command above returns nothing.
