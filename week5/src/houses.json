@@ -1,0 +1,90 @@
+{
+  "houses": [
+    {
+      "houseId": 1,
+      "name": "Summer cottage",
+      "address": "Rantatie 12, 90100 Oulu",
+      "sensors": [
+        {
+          "sensorId": 1001,
+          "type": "temperature_humidity",
+          "location": "Living room, north wall, 1.5 m above floor",
+          "notes": "Battery powered, sends data every 10 minutes over Zigbee",
+          "timestamp": 1791280800,
+          "values": {
+            "temperature_c": 21.4,
+            "humidity_pct": 38.2,
+            "battery_pct": 87
+          }
+        },
+        {
+          "sensorId": 1002,
+          "type": "air_quality",
+          "location": "Bedroom, on the bookshelf",
+          "notes": "USB powered, CO2 calibrated 2026-09-01",
+          "timestamp": 1791280860,
+          "values": {
+            "co2_ppm": 742,
+            "tvoc_ppb": 118,
+            "pm2_5_ugm3": 4.6
+          }
+        },
+        {
+          "sensorId": 1003,
+          "type": "water_leak",
+          "location": "Kitchen, under the sink",
+          "notes": "Alarm is triggered when leak value is 1",
+          "timestamp": 1791280920,
+          "values": {
+            "leak": 0,
+            "temperature_c": 18.9,
+            "battery_pct": 64
+          }
+        }
+      ]
+    },
+    {
+      "houseId": 2,
+      "name": "Apartment",
+      "address": "Kauppurienkatu 5 B 14, 90100 Oulu",
+      "sensors": [
+        {
+          "sensorId": 2001,
+          "type": "temperature_humidity",
+          "location": "Bathroom, ceiling next to the vent",
+          "notes": "High humidity is expected after showers",
+          "timestamp": 1791281400,
+          "values": {
+            "temperature_c": 24.1,
+            "humidity_pct": 71.5,
+            "battery_pct": 92
+          }
+        },
+        {
+          "sensorId": 2002,
+          "type": "energy_meter",
+          "location": "Hallway, electrical cabinet",
+          "notes": "Measures total power consumption of the apartment",
+          "timestamp": 1791281460,
+          "values": {
+            "power_w": 1245,
+            "voltage_v": 231.6,
+            "energy_kwh": 5873.42
+          }
+        },
+        {
+          "sensorId": 2003,
+          "type": "door_motion",
+          "location": "Front door",
+          "notes": "Door contact and PIR motion sensor in the same device",
+          "timestamp": 1791281520,
+          "values": {
+            "door_open": false,
+            "motion_detected": true,
+            "battery_pct": 45
+          }
+        }
+      ]
+    }
+  ]
+}
