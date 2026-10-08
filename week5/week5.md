@@ -137,9 +137,9 @@ Gleb Bulygin<br>gbulygin@students.oamk.fi<br>DIN24SP<br>Autumn 2026
 
   ```json
   {
-      "inputName": "Oamk IP networking course button",
-      "buttonPressure": "1337",
-      "version": "1.2.3"
+  	"inputName": "Oamk IP networking course button",
+  	"buttonPressure": "1337",
+  	"version": "1.2.3"
   }
   ```
 
@@ -181,7 +181,6 @@ Gleb Bulygin<br>gbulygin@students.oamk.fi<br>DIN24SP<br>Autumn 2026
   ![](./src/img/export.png)
 
   **_Figure 5.6_** — Export shows `~tkorpela` (text/html) and `autumn.zip` (application/zip)
-
   - The ZIP file `autumn.zip` contains a single image, `autumn.jpg`.
 
 - **Host 192.168.80.32 sent DNS requests to host 9.9.9.9. What are the requests?**
@@ -206,8 +205,6 @@ House:
     - value nnn
     - value nnn
 ```
-
-- **Validate your JSON file with validator: [jsonlint.com](https://jsonlint.com) or [jsonformatter.curiousconcept.com](https://jsonformatter.curiousconcept.com)**
 
 ```json
 {
@@ -302,11 +299,13 @@ House:
 }
 ```
 
+#### Validate your JSON file with validator: [jsonlint.com](https://jsonlint.com/) or [jsonformatter.curiousconcept.com](https://jsonformatter.curiousconcept.com/)
+
 ![](./src/img/json.png)
 
 **_Figure 5.8_** — JSON validation
 
-### 35. What is GraphQL? Also, check this [traffic and parking API documentation from Oulu](https://wp.oulunliikenne.fi/avoin-data/autoliikenne/graphql-rajapinnat/) (extra task uses this API)
+#### What is GraphQL? Also, check this [traffic and parking API documentation from Oulu](https://wp.oulunliikenne.fi/avoin-data/autoliikenne/graphql-rajapinnat/) (extra task uses this API)
 
 - **GraphQL** is a query language for APIs and a server-side runtime for running those queries. Facebook developed it in 2012 and released it as open source in 2015. A REST API has many endpoints, each returning a fixed data structure. A GraphQL API usually has **one endpoint** (`POST /graphql`), and the client sends a query that says exactly which fields it wants. The response is JSON with the same shape as the query.
   - **Schema & types**: the server describes its data with a strongly typed schema (types, fields, relations). Clients can read this schema through _introspection_, which makes self-documenting tools such as GraphiQL possible.
@@ -336,7 +335,7 @@ House:
 
   **_Figure 5.9_** — Oulu traffic parking API test with Thunder Client
 
-### 36. Install Cmder (or some other toolset where you have Curl or similar tool to make HTTP requests from command line or application.) Use Curl to fetch XML formatted weather data from FMI:
+### 35. Install Cmder (or some other toolset where you have Curl or similar tool to make HTTP requests from command line or application.) Use Curl to fetch XML formatted weather data from FMI:
 
 ```bash
 curl -s -L "https://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::observations::weather::timevaluepair&place=oulu&timestep=100&parameters=temperature"
@@ -349,7 +348,7 @@ curl -s -L "https://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::o
 - **Inspect and validate the received XML data with [www.w3schools.com/xml/xml_validator.asp](https://www.w3schools.com/xml/xml_validator.asp)**
   - Result of the check: `No errors found`
 
-### 37. Decode this base64 encoded message with any tool(s) you prefer:
+### 36. Decode this base64 encoded message with any tool(s) you prefer:
 
 ```text
 SGVsbG8gdGhlcmUgT2FtayBzdHVkZW50ISBBcmUgeW91IGhhdmluZyBmdW4gbm93Pz8/
@@ -361,66 +360,12 @@ SGVsbG8gdGhlcmUgT2FtayBzdHVkZW50ISBBcmUgeW91IGhhdmluZyBmdW4gbm93Pz8/
 
 - Decoded message: `Hello there Oamk student! Are you having fun now???`
 
-### 38. Encode this string: “I love data processing challenges!” with base64 encoding
+### 37. Encode this string: “I love data processing challenges!” with base64 encoding
 
-- `SSBsb3ZlIGRhdGEgcHJvY2Vzc2luZyBjaGFsbGVuZ2VzIQ==`
+Encoded string: `SSBsb3ZlIGRhdGEgcHJvY2Vzc2luZyBjaGFsbGVuZ2VzIQ==`
 
-  ![](./src/img/encoded_string.png)
+![](./src/img/encoded_string.png)
 
-  **_Figure 5.12_** — String encoded with [online tool](https://www.base64decode.org/)
+**_Figure 5.12_** — String encoded with [online tool](https://www.base64decode.org/)
 
 ---
-
-## Extra assignments
-
-> No need to document to the learning diary. Ignore these for peer reviews and grading.
-
-### Analyse TLS encrypted HTTP data with Wireshark.
-
-Some browsers (Chrome and Firefox, maybe others) allow dumping the used encryption keys to a file. Key file can be configured to the Wireshark. Key export to a file is usually something like:
-
-```powershell
-chrome.exe --ssl-key-log-file=nnnnn.log
-```
-
-### Install jQ JSON processor (Linux system is preferred, but assignments can be done with Windows and maybe with MacOS too)
-
-- **Download old Twitter bot account data zipped JSON file and parse it with jQ:**
-- **Use jQ to list only “created_at” timestamp lines**
-- **Use jQ to list only “created_at” timestamp lines AND “full_text” lines**
-
-### Download this simple two column CSV file containing timestamps and IP address data. With tools or programming language you prefer: Create a tool which converts (1st column) unix epoch timestamps to human readable format.
-
-Output should be something like this:
-
-```text
-Fri Apr 10 18:44:58 2020,194.61.27.249
-Fri Apr 10 18:45:44 2020,185.176.27.2
-Fri Apr 10 18:45:57 2020,159.65.145.253
-Fri Apr 10 18:46:05 2020,87.251.74.250
-Fri Apr 10 18:46:46 2020,185.176.27.2
-```
-
-### Use Curl (or similar tool) to fetch JSON formatted parking data from the API:
-
-```bash
-curl -L -X POST -H "Content-Type: application/json" --data "{ \"query\": \"{carParks {name,maxCapacity,spacesAvailable} }\" }" https://api.oulunliikenne.fi/proxy/graphql
-```
-
-- **Use jQ to list only values from “Valkea” parking. Result should look something like this:**
-
-  ```json
-  {
-  	"name": "Valkea",
-  	"maxCapacity": 63,
-  	"spacesAvailable": 56
-  }
-  ```
-
-### Use again old Twitter bot account data zipped JSON file and parse it with typical GNU text utilities (such as grep) or Windows utilities such as cmd.exe findstr or powershell select-string. JSON file contains coffeemaker usage data. Provide solutions and answers to these questions:
-
-- **How many times coffeemaker was used in 2018?**
-- **Which weekday is the most popular day?**
-- **From “full_text” timestamps: Which hour is most popular?**
-- **Only Thursdays and Fridays: How many times coffeemaker was used in total?**
-- **Only Mondays and Tuesdays in 2017: How many times coffeemaker was used in total?**

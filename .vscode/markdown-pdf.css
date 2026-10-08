@@ -1,0 +1,263 @@
+/*
+ * Light, GitHub-style theme for Custom MD PDF exports.
+ * Used with "custom-md-pdf.includeDefaultStyles": false, so this is the only
+ * stylesheet apart from the highlight.js theme (github.css).
+ */
+
+:root {
+	--text: #1f2328;
+	--muted: #59636e;
+	--border: #d1d9e0;
+	--border-muted: #d1d9e0b3;
+	--bg-subtle: #f6f8fa;
+	--code-bg: #818b981f;
+	--link: #0969da;
+	--quote-bar: #d1d9e0;
+}
+
+html,
+body {
+	background: #ffffff;
+	color: var(--text);
+}
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif,
+		"Apple Color Emoji", "Segoe UI Emoji";
+	font-size: 14px;
+	line-height: 1.6;
+	word-wrap: break-word;
+	margin: 0;
+	padding: 0;
+}
+
+/*
+ * Keeping things together across pages
+ * ------------------------------------
+ * The extension prints with its bundled Chromium 80, which ignores
+ * break-after: avoid and :has(). It does honour page-break-inside: avoid,
+ * so "keep with next" is faked: the element gets an invisible bottom padding
+ * (--keep) that is cancelled by an equal negative margin. The element is
+ * unbreakable, so if it plus the reserved space doesn't fit at the bottom of
+ * a page, the whole thing moves to the next page together with what follows.
+ */
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	--keep: 80mm;
+	margin-top: 24px;
+	padding-bottom: var(--keep);
+	margin-bottom: calc(16px - var(--keep));
+	font-weight: 600;
+	line-height: 1.25;
+	page-break-inside: avoid;
+	break-inside: avoid;
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/* question headings: their first sub-question (often a screenshot or a table) can be
+   tall and unbreakable, so reserve more room than for smaller subheadings */
+h3 {
+	--keep: 115mm;
+}
+
+/* underline drawn as a background line so it stays under the text, not under the padding */
+h1,
+h2 {
+	background-image: linear-gradient(var(--border-muted), var(--border-muted));
+	background-repeat: no-repeat;
+	background-size: 100% 1px;
+	background-position: 0 calc(100% - var(--keep) + 0.3em);
+}
+
+h1 {
+	font-size: 2em;
+}
+
+h2 {
+	font-size: 1.5em;
+}
+
+/* bold sub-questions: a list item (question + answer + figure) moves to the next page
+   as a whole; only items taller than a page are split */
+li {
+	page-break-inside: avoid;
+	break-inside: avoid;
+}
+
+/* plain paragraphs are short, never split them */
+p {
+	page-break-inside: avoid;
+	break-inside: avoid;
+}
+
+h3 {
+	font-size: 1.25em;
+}
+
+h4 {
+	font-size: 1em;
+}
+
+/* Text blocks */
+p,
+blockquote,
+ul,
+ol,
+table,
+pre {
+	margin-top: 0;
+	margin-bottom: 16px;
+}
+
+a {
+	color: var(--link);
+	text-decoration: none;
+}
+
+strong {
+	font-weight: 600;
+}
+
+hr {
+	height: 0.25em;
+	padding: 0;
+	margin: 24px 0;
+	background-color: var(--border);
+	border: 0;
+}
+
+/* the closing "---" of each week is a separator for the markdown view; in the PDF
+   it would only spill onto an otherwise empty last page */
+body > hr:last-child {
+	display: none;
+}
+
+ul,
+ol {
+	padding-left: 2em;
+}
+
+li + li {
+	margin-top: 0.25em;
+}
+
+li > p {
+	margin-top: 16px;
+}
+
+blockquote {
+	margin-left: 0;
+	margin-right: 0;
+	padding: 0 1em;
+	color: var(--muted);
+	border-left: 0.25em solid var(--quote-bar);
+	background: none;
+}
+
+blockquote > :last-child {
+	margin-bottom: 0;
+}
+
+/* Code */
+code,
+pre {
+	font-family: Consolas, "Liberation Mono", Menlo, monospace;
+	font-size: 85%;
+}
+
+:not(pre) > code {
+	padding: 0.2em 0.4em;
+	margin: 0;
+	white-space: break-spaces;
+	background-color: var(--code-bg);
+	border-radius: 6px;
+	color: inherit;
+}
+
+pre {
+	padding: 16px;
+	line-height: 1.45;
+	background-color: var(--bg-subtle);
+	border: none;
+	border-radius: 6px;
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+	tab-size: 2;
+	-moz-tab-size: 2;
+	page-break-inside: avoid;
+	break-inside: avoid;
+}
+
+pre > code,
+pre code.hljs,
+pre.hljs {
+	padding: 0;
+	font-size: 100%;
+	background: transparent;
+	white-space: pre-wrap;
+}
+
+/* Tables */
+table {
+	border-spacing: 0;
+	border-collapse: collapse;
+	display: table;
+	width: max-content;
+	max-width: 100%;
+	page-break-inside: avoid;
+	break-inside: avoid;
+}
+
+table th,
+table td {
+	padding: 6px 13px;
+	border: 1px solid var(--border);
+	vertical-align: top;
+}
+
+table th {
+	font-weight: 600;
+	background-color: var(--bg-subtle);
+}
+
+table tr:nth-child(2n) {
+	background-color: var(--bg-subtle);
+}
+
+/* Images and figure captions */
+/* an image reserves room for the caption below it, so the caption never starts a new page alone */
+img {
+	--keep: 14mm;
+	display: block;
+	max-width: 100%;
+	max-height: 95mm;
+	width: auto;
+	height: auto;
+	padding-bottom: var(--keep);
+	margin-bottom: calc(0px - var(--keep));
+	page-break-inside: avoid;
+	break-inside: avoid;
+}
+
+img.emoji {
+	display: inline;
+	padding: 0;
+	margin: 0;
+}
+
+/* Page break helper: <div class="page"></div> */
+.page {
+	page-break-after: always;
+	break-after: page;
+}
+
+.emoji {
+	height: 1.2em;
+}

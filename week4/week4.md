@@ -18,12 +18,12 @@ I have installed **croc** on Android with `pkg install croc` (I use **termux** a
 
 ![](./src/img/Screenshot_20261005_223150_Termux.jpg)
 
-**_Figure 4.2_** — Recieve file via **croc** on Android.
+**_Figure 4.2_** — Receive file via **croc** on Android.
 
 > I accidentally cancelled the first file send, but on the second try it worked. Also, before the next screenshot I reinstalled the **termux** app. The one I used initially was the outdated version from the Google Playstore. It had quite a few issues. I installed latest version from the F-Droid.
-
+>
 > My phone in on cellular data and my windows host is connected to my home Wi-Fi.
-
+>
 > Then I have moved the screenshot above from my Android phone to my laptop.
 
 ![](./src/img/croc_send_android.png)
@@ -44,7 +44,7 @@ I have installed **croc** on Android with `pkg install croc` (I use **termux** a
 
 ### 27. Study how NTP protocol operates and analyse this [Python NTP client code](https://tl.oamk.fi/iot/dl/ntp_client.html). Also available here as [plain text](https://tl.oamk.fi/iot/dl/ntp_client.txt).
 
-- This Python script uses direct socket programming to access the NTP server. Comment individual socket programming related code lines. Also, answer these:
+- **This Python script uses direct socket programming to access the NTP server. Comment individual socket programming related code lines. Also, answer these:**
   - **What is the NTP server (DNS) hostname?**
 
     `pool.ntp.org` — the default `host` parameter of the `ntp_time()` function.
@@ -57,74 +57,76 @@ I have installed **croc** on Android with `pkg install croc` (I use **termux** a
 
     It's using **UDP**. The socket is created with `SOCK_DGRAM` (`socket(AF_INET, SOCK_DGRAM)`), which is the datagram/UDP socket type, as opposed to `SOCK_STREAM` which would indicate TCP. The code also uses `sendto()`/`recvfrom()` instead of `connect()`/`send()`/`recv()`, which is typical of connectionless UDP usage — the socket is never explicitly connected to the server before sending data.
 
-- Try to execute the app with Python
+- **Try to execute the app with Python**
 
-![](./src/img/python_ntp_execution.png)
+  ![](./src/img/python_ntp_execution.png)
 
-**_Figure 4.5_** — `Python_NTP_client_code` execution in the terminal
+  **_Figure 4.5_** — `Python_NTP_client_code` execution in the terminal
 
 ### 28. Do these Python programming assignments with Windows or Linux (or with MacOS if you want and know how)
 
-- For example, use https://realpython.com/python-sockets/ or similar site(s) for socket programming example codes and create TCP client and TCP server Python scripts
-- Establish a TCP connection between your client and server Python scripts (either as localhost traffic or between two separate hosts if you have access to two or more Python running hosts without firewall preventing the traffic)
-- Transfer some ASCII text strings between the hosts
-  - TCP client connects to the server, sends some plain text string and then disconnects
-  - Server prints the text to the console or elsewhere
-  - Save your source codes and work. You need scripts again during the course week #5 (Wireshark **protocol** analyzer assignments)
-- Use netstat or similar command line tools to check the TCP connection status (for example the Python server script LISTENING the selected TCP port)
+- **For example, use [https://realpython.com/python-sockets/](https://realpython.com/python-sockets/) or similar site(s) for socket programming example codes and create TCP client and TCP server Python scripts**
+- **Establish a TCP connection between your client and server Python scripts (either as localhost traffic or between two separate hosts if you have access to two or more Python running hosts without firewall preventing the traffic)**
+- **Transfer some ASCII text strings between the hosts**
+  - **TCP client connects to the server, sends some plain text string and then disconnects**
+  - **Server prints the text to the console or elsewhere**
+  - **Save your source codes and work. You need scripts again during the course week #5 (Wireshark protocol analyzer assignments)**
+- **Use netstat or similar command line tools to check the TCP connection status (for example the Python server script LISTENING the selected TCP port)**
 
-  ![](./src/img/tcp.png)
+![](./src/img/tcp.png)
 
-  **_Figure 4.6_** — sequence of socket API calls and data flow for TCP (source: https://realpython.com/python-sockets/)
+**_Figure 4.6_** — sequence of socket API calls and data flow for TCP (source: [https://realpython.com/python-sockets/](https://realpython.com/python-sockets/))
 
-  I don't have access to another machine now, so my app will run on localhost. I have created two files `tcp_server.py` and `tcp_client.py`.
+I don't have access to another machine now, so my app will run on localhost. I have created two files `tcp_server.py` and `tcp_client.py`.
 
-  ```python
-  # tcp_server.py
-  import socket
+```python
+# tcp_server.py
+import socket
 
-  HOST = "0.0.0.0"  # listen on all interfaces so a remote client can connect too
-  PORT = 65432
+HOST = "0.0.0.0"  # listen on all interfaces so a remote client can connect too
+PORT = 65432
 
-  with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
-      server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-      server_socket.bind((HOST, PORT))
-      server_socket.listen()
-      print(f"Server listening on {HOST}:{PORT}")
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
+    server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    server_socket.bind((HOST, PORT))
+    server_socket.listen()
+    print(f"Server listening on {HOST}:{PORT}")
 
-      while True:
-          conn, addr = server_socket.accept()
-          with conn:
-              print(f"Connected by {addr}")
-              while True:
-                  data = conn.recv(1024)
-                  if not data:
-                      break
-                  print(f"Received from {addr}: {data.decode('ascii')}")
-              print(f"Disconnected: {addr}")
+    while True:
+        conn, addr = server_socket.accept()
+        with conn:
+            print(f"Connected by {addr}")
+            while True:
+                data = conn.recv(1024)
+                if not data:
+                    break
+                print(f"Received from {addr}: {data.decode('ascii')}")
+            print(f"Disconnected: {addr}")
 
-  ```
+```
 
-  ```python
-  # tcp_client.py
-  import socket
+```python
+# tcp_client.py
+import socket
 
-  HOST = "127.0.0.1"  # localhost
-  PORT = 65432
-  MESSAGE = "Hello from the TCP client!"
+HOST = "127.0.0.1"  # localhost
+PORT = 65432
+MESSAGE = "Hello from the TCP client!"
 
-  with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_socket:
-      client_socket.connect((HOST, PORT))
-      client_socket.sendall(MESSAGE.encode("ascii"))
-      print(f"Sent: {MESSAGE}")
-  ```
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_socket:
+    client_socket.connect((HOST, PORT))
+    client_socket.sendall(MESSAGE.encode("ascii"))
+    print(f"Sent: {MESSAGE}")
+```
 
-  ![](./src/img/tcp_client-server.png)
+![](./src/img/tcp_client-server.png)
 
-  **_Figure 4.7_** — a line of text sent from the client and received by the server
+**_Figure 4.7_** — a line of text sent from the client and received by the server
 
-  ![](./src/img/netstat_listening.png)
+![](./src/img/netstat_listening.png)
 
-  **_Figure 4.8_** — tcp_server.py app is listening for all incoming connections on port 65432
+**_Figure 4.8_** — tcp_server.py app is listening for all incoming connections on port 65432
 
-  After I stop the server app the command above returns nothing.
+After I stop the server app the command above returns nothing.
+
+---

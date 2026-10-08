@@ -158,7 +158,7 @@ Overall, `netstat` can be used to check active TCP/UDP connections and their sta
 
 **_Figure 3.2_** — `netstat -help` command output (Ubuntu)
 
-### 25. Do the 50 ms mystery quiz from https://mysteries.wizardzines.com/. What was the cause of extra 50 ms delay?
+### 25. Do the 50 ms mystery quiz from [https://mysteries.wizardzines.com/](https://mysteries.wizardzines.com/). What was the cause of extra 50 ms delay?
 
 **Here is what was happening:**
 
@@ -177,3 +177,5 @@ Overall, `netstat` can be used to check active TCP/UDP connections and their sta
 **or**
 
 **_Do not split POST request into 2 parts_**
+
+---

@@ -4,13 +4,14 @@ Gleb Bulygin<br>gbulygin@students.oamk.fi<br>DIN24SP<br>Autumn 2026
 
 ---
 
-> Since some of the terms were not clearly explained during the lectures or on the provided slides, for tasks that required writing a definition of some terms I used Microsoft Copilot and Claude with following prompt: _"Write a 2-3 sentences explaining following terms: `[list of terms]`"._ If something was not clear to me, I used follow up questions asking AI assistant to explain the term to me (or the power of Google). All other tasks were completed without use of AI.
+> All work for this course can be found in [this github repository](https://github.com/gllbhh/componentes_IOT_app). There I saved code snippets and other artifacts related to this course. It might be easier to read corresponding `md` files rather than a long pdf submitted for the assignment.
+> Working on assignments for this course I initially wrote answers in my own words and before commiting the changes I used Claude to verify my answers and improve wording and grammar, and to unify the formatting across all weeks.
 
 ## Week 1
 
-### 1. **Define foundational networking terms.** Write 2–3 sentences for each term. State what it means, why it matters, and, where useful, give one concrete example or relationship to another term.
+### 1. Define foundational networking terms. Write 2–3 sentences for each term. State what it means, why it matters, and, where useful, give one concrete example or relationship to another term.
 
-### Performance and protocol data:
+#### Performance and protocol data:
 
 - **network bandwidth** — a parameter that shows how much data can be transmitted.
   - Ever-growing need
@@ -21,14 +22,14 @@ Gleb Bulygin<br>gbulygin@students.oamk.fi<br>DIN24SP<br>Autumn 2026
 - **packet loss and jitter** — during the data transmission, packets can be lost. It can be referred to as **_packet loss_**. Even a packet loss rate of 5% can severely reduce effective throughput, depending on the network conditions and communication protocol. <br> **_Jitter_** describes the variation in packet delay or round-trip time (RTT). High jitter can lead to interruptions and reduced performance in communication protocols, especially for real-time applications.
 - **bps versus Bps**: **_bps_** — bits per second (b/s), **_Bps_** — byte per second (B/s). 1 Bps = 8 bps.
 
-  ![image](hobbit_joke.png)
+  ![](hobbit_joke.png)
 
-  _fig 1.1 — Hobbit/hobbyte joke._<br> _Credit to unknown reddit user_
+  **_Figure 1.1_** — Hobbit/hobbyte joke. _Credit to unknown reddit user_
 
-- **protocol payload** —
-- **protocol overhead, especially in resource-constrained IoT systems** —
+- **protocol payload** — the actual useful data a packet carries, for example the sensor reading or the file contents, without any headers. Every protocol layer treats the whole packet from the layer above as its payload. For example, a TCP segment is the payload of an IP packet.
+- **protocol overhead, especially in resource-constrained IoT systems** — everything that has to be sent besides the payload: headers, trailers, handshakes, acknowledgements and retransmissions. For a 4-byte temperature reading sent over TCP/IPv6/Ethernet, the headers alone are about 80 bytes, so most of the transmitted data is overhead. On battery-powered IoT devices with slow radios, every extra byte costs energy and airtime. That's why IoT uses compact protocols like MQTT, CoAP over UDP and 6LoWPAN header compression.
 
-### Link layer, topology, media, and wireless networking:
+#### Link layer, topology, media, and wireless networking:
 
 - **Spanning Tree Protocol (STP)** — A Layer 2 protocol that prevents switching loops in Ethernet networks by blocking redundant paths. If an active link fails, a blocked path can be activated.
 - **collision domain** — A network segment where devices share the same transmission medium and simultaneous transmissions can cause collisions. Switches reduce collision domains by giving each port its own domain.
@@ -47,23 +48,23 @@ Gleb Bulygin<br>gbulygin@students.oamk.fi<br>DIN24SP<br>Autumn 2026
 - **Wi-Fi ad hoc mode** — A wireless networking mode where devices communicate directly with each other without an access point. It creates a peer-to-peer network.
 - **IEEE 802.11ac, 802.11ax, and 802.11be.** — These are Wi-Fi standards corresponding to Wi-Fi 5, Wi-Fi 6/6E, and Wi‑Fi 7 respectively. Each generation improves speed, efficiency, and support for multiple devices.
 
-### Tracking the data path
+#### Tracking the data path
 
-In In Windows we can track the connection with `tracert` command. Following shows path from my laptop connected to `Eduroam` network to Google public DNS server. It goes from the local network (everything with a small delay) to Vaasa - Turku - Stockholm
+In Windows we can track the connection with `tracert` command. Following shows path from my laptop connected to `Eduroam` network to Google public DNS server. It goes from the local network (everything with a small delay) to Vaasa - Turku - Stockholm
 
-```pwsh
+```powershell
 tracert 8.8.8.8
 ```
 
-![tracert](tracert.png)
+![](tracert.png)
 
-fig 1.2 — Result of `tracert` command.
+**_Figure 1.2_** — Result of `tracert` command.
 
 ### 2. Estimate how long does it take to download 3 TB file from cloud based backup service if network download throughput is 200 Mbps for actual payload (i.e. data)?
 
-```
+```text
 file_size = 3 TB = 3,000 GB = 3,000,000 MB = 24,000,000 Mb
-download_speed = 200 Mbs
+download_speed = 200 Mbps
 download_time = file_size/download_speed = 24,000,000 / 200 s = 120,000 s
 1 h = 3600 s
 download_time_hours = 33.33 h
@@ -73,7 +74,7 @@ download_time_hours = 33.33 h
 
 I have checked MAC addresses of my laptop using following command:
 
-```
+```powershell
 # on Windows
 ipconfig /all
 ```
@@ -91,9 +92,9 @@ I won't add a screenshot for privacy reasons, but here are masked MAC addresses 
 
 Using [this](https://www.wireshark.org/tools/oui-lookup.html) tool I have searched for OUI of my devices. Laptop showed as `Intel Corporate`, actual phone address `Samsung Electronics Co., Ltd`, and the random address that my phone actually used to connect to the router had no matches in this database.
 
-![QUI lookup tool](QUI.png)
+![](QUI.png)
 
-fig 1.3 — QUI Lookup tool
+**_Figure 1.3_** — QUI Lookup tool
 
 ### 4. Describe shortly what are these network devices, functions, and services:
 
@@ -111,66 +112,82 @@ fig 1.3 — QUI Lookup tool
 
 ### 5. RFC assignments
 
-**What are RFCs?**
+- **What are RFCs?**
 
-**_RFCs_ (Request for Comments)** are technical documents that describe how Internet technologies, protocols, procedures, and standards work. They are published by organizations such as the **Internet Engineering Task Force (IETF)** and serve as the official reference for many Internet standards.
+  **_RFCs_ (Request for Comments)** are technical documents that describe how Internet technologies, protocols, procedures, and standards work. They are published by organizations such as the **Internet Engineering Task Force (IETF)** and serve as the official reference for many Internet standards.
 
-Historically, RFCs started as informal documents shared among researchers working on the early ARPANET. Despite the name, many RFCs today are official Internet standards.
+  Historically, RFCs started as informal documents shared among researchers working on the early ARPANET. Despite the name, many RFCs today are official Internet standards.
 
-**How many PPP related RFC documents can you find from rfc-editor website?**
+- **How many PPP related RFC documents can you find from rfc-editor website?**
 
-![ppp](ppp.png)
+  ![](ppp.png)
 
-fig 1.4 — Search results for `ppp` on [https://www.rfc-editor.org](https://www.rfc-editor.org) has **126** results.
+  **_Figure 1.4_** — Search results for `ppp` on [https://www.rfc-editor.org](https://www.rfc-editor.org) has **126** results.
 
-**What is the current status of RFC1597? What is the number for updated, more recent RFC of same topic?**
+- **What is the current status of RFC1597? What is the number for updated, more recent RFC of same topic?**
 
-![rfc 1597](RFC1597.png)
+  ![](RFC1597.png)
 
-fig 1.5 — RFC 1597 is **Obsoleted by RFC 1918**
+  **_Figure 1.5_** — RFC 1597 is **Obsoleted by RFC 1918**
 
-**When was RFC5218 released?**
+- **When was RFC5218 released?**
 
-![rfc 5218](RFC5218.png)
+  ![](RFC5218.png)
 
-fig 1.6 — RFC 5218 was released in July 2008
+  **_Figure 1.6_** — RFC 5218 was released in July 2008
 
-**What is the meaning if RFC status is BCP?**
+- **What is the meaning if RFC status is BCP?**
 
-**_BCP_** stands for Best Current Practice.
+  **_BCP_** stands for Best Current Practice.
 
-An RFC with status BCP is not necessarily a protocol standard. Instead, it documents the recommended way to do something on the Internet based on operational experience and community consensus.
+  An RFC with status BCP is not necessarily a protocol standard. Instead, it documents the recommended way to do something on the Internet based on operational experience and community consensus.
 
-**List authors of the CoAP RFC (June 2014). What is the RFC number?**
+- **List authors of the CoAP RFC (June 2014). What is the RFC number?**
 
-![rfc 7252](rfc7252.png)
+  ![](rfc7252.png)
 
-fig 1.7 — RFC 7252: The Constrained Application Protocol (CoAP)
+  **_Figure 1.7_** — RFC 7252: The Constrained Application Protocol (CoAP)
 
-Authors:
+  Authors:
+  - Z. Shelby
+  - K. Hartke
+  - C. Bormann
 
-- Z. Shelby
-- K. Hartke
-- C. Bormann
+- **Twitch.tv provides IRC access to the stream chats. Which RFC defines the original Internet Relay Chat (IRC) Protocol?**
 
-**Twitch.tv provides IRC access to the stream chats. Which RFC defines the original Internet Relay Chat (IRC) Protocol?**
+  ![](rfc1459.png)
 
-![rfc 1459](rfc1459.png)
-
-fig 1.8 — RFC 1459. This is the earliest RFC I found on IRC.
+  **_Figure 1.8_** — RFC 1459. This is the earliest RFC I found on IRC.
 
 ### 6. What is OSI model? Compare OSI model to TCP/IP model
 
-![osi](osi_model.png)
+![](osi_model.png)
 
-fig 1.9 — OSI model slide
+**_Figure 1.9_** — OSI model slide
 
 The **_OSI (Open Systems Interconnection)_** model is a conceptual framework that describes how data travels through a network. It divides network communication into seven layers, each with specific responsibilities.
 
-![tcp model](tcp_model.png)
+![](tcp_model.png)
 
-fig 1.10 — TCP/IP model slide
+**_Figure 1.10_** — TCP/IP model slide
 
-![tcp/ip vs osi](tcpip_vs_osi.png)
+![](tcpip_vs_osi.png)
 
-fig 1.11 — TCP/IP vs OSI model
+**_Figure 1.11_** — TCP/IP vs OSI model
+
+The **_TCP/IP model_** describes the same communication with only four layers, and it's the model the real Internet is built on:
+
+| OSI model                                      | TCP/IP model                     | Example protocols / PDU                |
+| ---------------------------------------------- | -------------------------------- | -------------------------------------- |
+| 7 Application, 6 Presentation, 5 Session       | Application                      | HTTP, MQTT, DNS, TLS — data            |
+| 4 Transport                                    | Transport                        | TCP (segment), UDP (datagram)          |
+| 3 Network                                      | Internet                         | IP, ICMP — packet                      |
+| 2 Data Link, 1 Physical                        | Network Access (Link)            | Ethernet, Wi-Fi — frame, bits          |
+
+Main differences:
+
+- **Number of layers:** OSI has seven layers. TCP/IP has four, because it merges the top three OSI layers into _Application_ and the bottom two into _Network Access_.
+- **Purpose:** OSI is a theoretical reference model, designed before the protocols existed. It's mostly used for teaching and troubleshooting ("is it a layer 2 or layer 3 problem?"). TCP/IP was built from protocols that already worked, and it describes how the Internet actually runs.
+- **Separation:** OSI keeps presentation (encoding, encryption) and session handling as separate layers. In TCP/IP the application handles them itself, for example TLS inside the application layer.
+
+---

@@ -1,0 +1,13 @@
+{
+	// Custom MD PDF: light, GitHub-style export for the learning diary
+	"custom-md-pdf.includeDefaultStyles": false,
+	"custom-md-pdf.styles": [".vscode/markdown-pdf.css"],
+	"custom-md-pdf.stylesRelativePathFile": false,
+	"custom-md-pdf.highlight": true,
+	"custom-md-pdf.highlightStyle": "github.css",
+	"custom-md-pdf.printBackground": true,
+	"custom-md-pdf.breaks": false,
+	"custom-md-pdf.displayHeaderFooter": true,
+	"custom-md-pdf.headerTemplate": "<div></div>",
+	"custom-md-pdf.footerTemplate": "<div style=\"width:100%; margin:0 1.3cm; padding-top:6px; border-top:1px solid #d1d9e0; display:flex; justify-content:space-between; font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; font-size:8px; color:#59636e;\"><span>Gleb Bulygin</span><span>Components of IoT Application</span><span><span class='pageNumber'></span> / <span class='totalPages'></span></span></div>"
+}

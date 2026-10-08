@@ -6,7 +6,7 @@ Gleb Bulygin<br>gbulygin@students.oamk.fi<br>DIN24SP<br>Autumn 2026
 
 ## Week 6
 
-### 39. Describe the difference between request-response and publish-subscribe communication models
+### 38. Describe the difference between request-response and publish-subscribe communication models
 
 **Request-response** is a direct, one-to-one model: a **client** sends a request to a known **server** and waits for its answer. The client has to know the server's address, and both must be online at the same time. If the client wants new data, it must ask again (**polling**). This is how **HTTP** (REST APIs) and **CoAP** work.
 
@@ -36,7 +36,7 @@ Sensor (publisher) ──▶ topic: home/temp ──▶ Broker ──▶ Phone a
 
 For IoT, publish-subscribe is usually the better fit for **sensor data and events**: a battery-powered device just publishes a reading and goes back to sleep, and any number of apps can receive it. Request-response is better when you need a **specific answer on demand**, e.g. reading a configuration value or calling a command on a device.
 
-### 40. Try [MQTT websocket demo application](http://www.hivemq.com/demos/websocket-client/)
+### 39. Try [MQTT websocket demo application](http://www.hivemq.com/demos/websocket-client/)
 
 - **Subscribe to some existing topic(s) in HiveMQ demo service**
 - **Publish some messages to the topic(s) you subscribed**
@@ -45,7 +45,7 @@ For IoT, publish-subscribe is usually the better fit for **sensor data and event
 
   **_Figure 6.1_** — Message "Hello from Oulu!" published to the `testtopic/1`
 
-### 41. Explain what are MQTT retained messages
+### 40. Explain what are MQTT retained messages
 
 Normally an MQTT broker does **not store** messages: it forwards a published message to the clients that are subscribed **at that moment**, and then it's gone. A client that subscribes later has to wait for the next publish, which for a sensor reporting every 10 minutes (or a status that rarely changes) can take a long time.
 
@@ -69,7 +69,7 @@ Key rules:
 
 In the HiveMQ websocket client you can try it by ticking **Retain** when publishing, then unsubscribing and subscribing again: the message is delivered again immediately.
 
-### 42. List shortly some reasons why MQTT may be better than HTTP for IP-based IoT communication? (For example: HTTP vs. MQTT: A tale of two IoT protocols and MQTT Vs. HTTP: Understanding the Differences)
+### 41. List shortly some reasons why MQTT may be better than HTTP for IP-based IoT communication? (For example: HTTP vs. MQTT: A tale of two IoT protocols and MQTT Vs. HTTP: Understanding the Differences)
 
 - **Much smaller overhead.** An MQTT fixed header is only **2 bytes**, and a small publish can fit in a few tens of bytes. An HTTP request carries text headers (method, URL, `Host`, `User-Agent`, `Content-Type`, cookies…) that are often **hundreds of bytes** — larger than the sensor reading itself. Less data means less radio time, which saves **battery and bandwidth**, and costs less on metered (e.g. cellular) links.
 - **One persistent connection.** An MQTT client opens one TCP connection and keeps it open, so it doesn't repeat the TCP (and TLS) handshake for every message. With HTTP, each request either opens a new connection or has to manage keep-alive.
@@ -82,25 +82,25 @@ In the HiveMQ websocket client you can try it by ticking **Retain** when publish
 
 > HTTP is still a good choice for **request-response** tasks like REST APIs, firmware downloads, and web interfaces, and it's universally supported by firewalls, proxies and tools. In practice, many IoT systems use **MQTT for device telemetry** and **HTTP for apps and APIs**.
 
-### 43. What is CoAP?
+### 42. What is CoAP?
 
 CoAP (Constrained Application Protocol, RFC 7252) is basically a stripped-down HTTP for tiny devices. It keeps the familiar REST idea, so you still have resources with URIs and use GET, POST, PUT and DELETE on them, but it runs over **UDP** instead of TCP and its header is only 4 bytes. Because UDP has no delivery guarantee, CoAP adds its own: a message can be sent as _confirmable_ (the receiver has to ACK it, otherwise it gets resent) or _non-confirmable_ (fire and forget).
 
 A few things HTTP doesn't have: the **Observe** option lets a client subscribe to a resource and get updates pushed to it, a bit like MQTT. It supports **multicast**, which is handy for device discovery, and large payloads can be split with block-wise transfer. The default port is 5683, or 5684 when it's secured with DTLS.
 
-### 44. What is 6LoWPAN?
+### 43. What is 6LoWPAN?
 
 6LoWPAN stands for _IPv6 over Low-Power Wireless Personal Area Networks_. It's an adaptation layer that sits between IEEE 802.15.4 radios and IPv6, so that very small battery-powered devices can be real IPv6 hosts with their own addresses.
 
 The problem it solves is size. An 802.15.4 frame is at most 127 bytes, while the IPv6 header alone takes 40 bytes and IPv6 expects packets of at least 1280 bytes. 6LoWPAN fixes this in two ways. It **compresses headers** (IPv6 + UDP can often shrink from 48 bytes to well under 10, because much of it can be derived from the link layer), and it **fragments** big IPv6 packets into several radio frames and puts them back together at the other end. Thread, which Matter devices use, is built on top of 6LoWPAN.
 
-### 45. What is IETF ROLL?
+### 44. What is IETF ROLL?
 
 ROLL is an IETF working group, short for **Routing Over Low power and Lossy networks**. It was set up around 2008 after people noticed that the usual routing protocols (OSPF, OLSR and similar) didn't suit sensor networks: they send too much control traffic, use too much memory, and expect links to be fairly stable.
 
 The group's job was to define routing requirements for these "LLNs" (home and building automation, industrial and urban sensor networks) and then design a protocol that fits. Their main result is **RPL** (RFC 6550). They also published the Trickle algorithm (RFC 6206) and the objective functions RPL uses to pick routes.
 
-### 46. Describe IETF RPL protocol?
+### 45. Describe IETF RPL protocol?
 
 RPL (pronounced "ripple") is the _IPv6 Routing Protocol for Low-Power and Lossy Networks_. It's a distance-vector protocol that organizes the network as a tree-like graph called a **DODAG** (Destination-Oriented Directed Acyclic Graph). The root is usually the border router that connects the sensor network to the internet.
 
@@ -112,7 +112,7 @@ Each node gets a **rank**, which roughly says how far it is from the root. Route
 
 DIOs are sent using the Trickle timer. When the network is stable, messages become rare, which saves energy, and when something changes they speed up again. RPL is optimized for sensors sending data up to the root. For downward traffic it has a _storing_ mode, where nodes keep routing tables, and a _non-storing_ mode, where only the root knows the routes and uses source routing.
 
-### 47. Why classic computer network protocols like TCP/IP, data formats such as JSON and XML, and security systems like (PKI/HTTPS) won’t usually work at all or are not very optimal to be used in resource limited wireless sensor networks (low power and lossy networks)?
+### 46. Why classic computer network protocols like TCP/IP, data formats such as JSON and XML, and security systems like (PKI/HTTPS) won’t usually work at all or are not very optimal to be used in resource limited wireless sensor networks (low power and lossy networks)?
 
 A typical sensor node might have tens of kilobytes of RAM, a slow microcontroller and a battery that's supposed to last for years. On top of that, its radio frames are around 100 bytes and packets get lost all the time. The standard internet stack was designed with none of that in mind:
 
@@ -123,7 +123,7 @@ A typical sensor node might have tens of kilobytes of RAM, a slow microcontrolle
 
 That's why the constrained world uses lighter equivalents: UDP with CoAP instead of TCP with HTTP, 6LoWPAN header compression, CBOR instead of JSON, and DTLS or OSCORE with pre-shared keys or elliptic-curve keys instead of full TLS with certificate chains.
 
-### 48. What is the MTU challenge for IPv4 and IPv6 over common wireless low power and lossy wireless connections (Hint: Research Zigbee/IEEE 802.15.4 and Bluetooth MTU vs IPv4 or IPv6)?
+### 47. What is the MTU challenge for IPv4 and IPv6 over common wireless low power and lossy wireless connections (Hint: Research Zigbee/IEEE 802.15.4 and Bluetooth MTU vs IPv4 or IPv6)?
 
 MTU (Maximum Transmission Unit) is the largest packet a link can carry in one go. The mismatch is big:
 
@@ -138,7 +138,7 @@ So a single minimum-size IPv6 packet doesn't fit anywhere near one radio frame. 
 
 Fragmentation brings its own trouble on lossy links. A 1280-byte packet turns into a dozen or more frames, and if only one of them is lost, the whole packet is lost and has to be sent again. That costs energy and airtime. The receiver also needs RAM to buffer the fragments while it waits for the rest. In practice, applications try to keep their messages small enough to fit in a single frame. This is why header compression and compact formats like CoAP and CBOR matter so much.
 
-### 49. Compare and list few HTTP/1.1, HTTP/2 and HTTP/3 differencies and features
+### 48. Compare and list few HTTP/1.1, HTTP/2 and HTTP/3 differencies and features
 
 |                         | HTTP/1.1 (1997)                                      | HTTP/2 (2015)                                                         | HTTP/3 (2022)                                   |
 | ----------------------- | ---------------------------------------------------- | --------------------------------------------------------------------- | ----------------------------------------------- |
@@ -155,7 +155,7 @@ A few notes on each:
 - **HTTP/2** keeps the same methods, status codes and headers, but sends everything as binary frames over a single connection. It also introduced stream priorities and server push, although browsers have since dropped support for push.
 - **HTTP/3** replaces TCP with QUIC. Connection setup is faster (1 round trip, or 0-RTT when reconnecting), and a connection can survive a network change, for example moving from Wi-Fi to mobile data, because it's identified by a connection ID instead of an IP address and port.
 
-### 50. Use Chrome or other Chromium based browser and it's developer tools (F12), and access the course web page [tl.oamk.fi/iot/](https://tl.oamk.fi/iot/). From the developer tools network tab, select the main page: `iot/` and check the response headers. Answer:
+### 49. Use Chrome or other Chromium based browser and it's developer tools (F12), and access the course web page [tl.oamk.fi/iot/](https://tl.oamk.fi/iot/). From the developer tools network tab, select the main page: `iot/` and check the response headers. Answer:
 
 - **What is the connection type?**
   - keep alive
@@ -168,7 +168,7 @@ A few notes on each:
 - **Is there `Strict-Transport-Security` set in the response?**
   - yes: max-age=31536000; includeSubdomains;
 
-### 51. What is Head-of-Line blocking challenge/problem?
+### 50. What is Head-of-Line blocking challenge/problem?
 
 Head-of-line (HOL) blocking happens when things are handled strictly in order and the first one in the queue gets stuck. Everything behind it has to wait, even if it's ready to go. It's like a supermarket queue where one customer's card doesn't work and nobody else can pay.
 
@@ -179,7 +179,7 @@ In HTTP it shows up at two levels:
 
 HTTP/3 solves this by running over QUIC, where each stream is delivered independently. A lost packet only holds up the stream it belongs to.
 
-### 52. What is reverse proxy. List some advantages and features
+### 51. What is reverse proxy. List some advantages and features
 
 A reverse proxy is a server that sits in front of one or more backend servers and receives client requests on their behalf. The client thinks it's talking to the website directly, but the reverse proxy decides which backend should handle the request, forwards it, and passes the response back. Common examples are **nginx**, **HAProxy**, **Traefik**, **Caddy**, and Apache with `mod_proxy`. Cloudflare-style CDNs work as reverse proxies too.
 
@@ -196,7 +196,7 @@ Advantages and features:
 
 In IoT setups this is a common pattern: nginx in front of Node-RED, Grafana and an API, all sharing one domain and one certificate.
 
-### 53. What is Web application firewall (WAF). List some advantages and features
+### 52. What is Web application firewall (WAF). List some advantages and features
 
 A WAF is a firewall for HTTP traffic. A normal network firewall looks at IP addresses and ports, so it allows or blocks traffic to port 443, for example. A WAF actually reads the content of HTTP requests and responses and blocks the ones that look like attacks on the web application. It's often built into a reverse proxy or CDN, e.g. **ModSecurity** with the OWASP Core Rule Set, **Cloudflare WAF**, **AWS WAF** or **Azure Application Gateway**.
 
@@ -211,15 +211,15 @@ Advantages and features:
 
 The downsides are that it can produce false positives, so rules need tuning, and it doesn't replace writing secure code. It's an extra layer.
 
-### 54. What are Websockets?
+### 53. What are Websockets?
 
 WebSocket (RFC 6455) is a protocol that gives the browser and a server a **permanent two-way connection**. With plain HTTP, the client always has to ask first. With a WebSocket, once the connection is open, either side can send a message at any time.
 
 It starts as a normal HTTP request with an `Upgrade: websocket` header. The server answers `101 Switching Protocols`, and from then on the same TCP connection carries small WebSocket frames instead of HTTP requests. The URLs use `ws://`, or `wss://` with TLS, and the default ports are 80 and 443, so they usually get through firewalls and proxies.
 
-Because there's no HTTP header on every message, overhead is small and latency is low. That makes WebSockets a good fit for chat, live dashboards, online games, notifications and IoT data. The HiveMQ client in question 40 is an example: it runs **MQTT over WebSockets**, which is how a browser, which can't open a raw TCP connection, can talk to an MQTT broker.
+Because there's no HTTP header on every message, overhead is small and latency is low. That makes WebSockets a good fit for chat, live dashboards, online games, notifications and IoT data. The HiveMQ client in question 39 is an example: it runs **MQTT over WebSockets**, which is how a browser, which can't open a raw TCP connection, can talk to an MQTT broker.
 
-### 55. What is HTTP long polling?
+### 54. What is HTTP long polling?
 
 Long polling is a trick for getting near-real-time updates over plain HTTP, from before WebSockets were widely available.
 
@@ -234,10 +234,12 @@ Client ── GET /updates ──▶ Server   (waits again...)
 
 It works everywhere because it's just ordinary HTTP. The downsides are that every message still needs a full HTTP request with headers, the server has to keep many connections waiting, and the client has to send a new request after each message. Today WebSockets or Server-Sent Events are usually a better choice, but long polling is still used as a fallback, for example in Socket.IO.
 
-### 56. Use this [tool](https://tools.keycdn.com/http2-test) to check few websites whether the server supports HTTP/2. Two examples: [www.kaleva.fi](https://www.kaleva.fi) and [www.oulu.fi](https://www.oulu.fi)
+### 55. Use this [tool](https://tools.keycdn.com/http2-test) to check few websites whether the server supports HTTP/2. Two examples: [www.kaleva.fi](https://www.kaleva.fi) and [www.oulu.fi](https://www.oulu.fi)
 
-    - [www.kaleva.fi](https://www.kaleva.fi) supports HTTP/2, ALPN extension is supported
-    - [www.oulu.fi](https://www.oulu.fi) does not support HTTP/2, ALPN extension is not supported
+- [www.kaleva.fi](https://www.kaleva.fi) supports HTTP/2, ALPN extension is supported
+- [www.oulu.fi](https://www.oulu.fi) does not support HTTP/2, ALPN extension is not supported
+
+ALPN (Application-Layer Protocol Negotiation) is the TLS extension a browser uses to agree on HTTP/2 during the TLS handshake, so a server without ALPN support can only use HTTP/1.1. I also checked both sites with `openssl s_client -alpn h2,http/1.1`: kaleva.fi negotiated `h2`, oulu.fi negotiated nothing.
 
 ![](./src/img/http_test_kaleva.png)
 
@@ -247,7 +249,7 @@ It works everywhere because it's just ordinary HTTP. The downsides are that ever
 
 **_Figure 6.3_** — [tool](https://tools.keycdn.com/http2-test) result for [www.oulu.fi](https://www.oulu.fi)
 
-### 57. Study Google Firebase documentation and advertisements. Think and list examples how to use Firebase ecosystem with Android application(s) or with some IoT other system?
+### 56. Study Google Firebase documentation and advertisements. Think and list examples how to use Firebase ecosystem with Android application(s) or with some IoT other system?
 
 Firebase is Google's Backend-as-a-Service platform. It gives you ready-made backend pieces (login, databases, file storage, push notifications, serverless functions, analytics) as SDKs for Android, iOS, web and C++. You don't have to run your own servers, and the free Spark plan is enough for small projects.
 
@@ -304,7 +306,7 @@ Firebase saved us from building and hosting our own backend, login system and fi
 
 Things to keep in mind for IoT: Firebase isn't built for very high-frequency telemetry. Every write costs money once you leave the free tier, and the SDKs are too heavy for the smallest microcontrollers. A common setup is to collect data through MQTT, then store summaries or important events in Firebase, and use FCM for notifications.
 
-### 58. Use hivemq.com open MQTT broker service with Python to publish MQTT messages. Use this very basic Python MQTT publish example. Change the MQTT channel name to something different if the script complaing about the authentication.
+### 57. Use hivemq.com open MQTT broker service with Python to publish MQTT messages. Use this very basic Python MQTT publish example. Change the MQTT channel name to something different if the script complaing about the authentication.
 
 - **Install Paho MQTT library to your Python development environment.**
 
@@ -327,29 +329,31 @@ Things to keep in mind for IoT: Firebase isn't built for very high-frequency tel
 
 - **Use web browser to connect HiveMQ websocket client interface. After connecting, subscribe to `oamkiotcourse/#` channel (`#` is wildcard to receive all data)**
 
+  I connected the [HiveMQ websocket client](http://www.hivemq.com/demos/websocket-client/) and subscribed to `oamkiotcourse/#`. Because of the wildcard it received everything under `oamkiotcourse/`: the original example's `test/sensor1` and `test/sensor2` messages, my own `test/gllbhh1` and `test/gllbhh2` messages, and other students' topics such as `oamkiotcourse/student6/67` (left side of Figure 6.4).
+
 - **Modify the example Python code and publish some random data to the `oamkiotcourse` (or some channel of your own). Example code and websocket client should look something this**
+
+  ```python
+  # My modifications to the script. I only have changed the messages
+  from paho import mqtt
+  import paho.mqtt.client as paho
+  import paho.mqtt.publish as publish
+
+  msgs = [{'topic': "oamkiotcourse/test/gllbhh1", 'payload': "energy: 90"}, {"topic": "oamkiotcourse/test/gllbhh2", 'payload': "energy: 75"}]
+  publish.multiple(msgs, hostname="mqtt-dashboard.com", port=1883, protocol=paho.MQTTv31)
+  ```
 
 - **Analyse your Python MQTT client traffic with Wireshark (or with tcpdump if using some Linux server). For example, this packet capture example file is from this kind of MQTT publish message. From your Wireshark capture:**
   - **What is the destination IP address?**
-    - 3.66.250.17
+    - **3.66.250.17**, one of the addresses of `mqtt-dashboard.com` (the broker hostname used in the script)
   - **What are the source and destination TCP ports?**
-    - Source: 1761, Destination: 1883
+    - Source: **1761**, destination: **1883**. 1883 is the standard port for unencrypted MQTT. The source port is a temporary port the OS picked for this connection, so it changes on every run.
   - **Can you find published data as plain text from your captured traffic sample?**
-    - the message shows as Hexadecimal. But with right-click and `copy as ASCII` the message shows correctly ("energy: 90")
-
-```python
-# My modifications to the script. I only have changed the messages
-from paho import mqtt
-import paho.mqtt.client as paho
-import paho.mqtt.publish as publish
-
-msgs = [{'topic': "oamkiotcourse/test/gllbhh1", 'payload': "energy: 90"}, {"topic": "oamkiotcourse/test/gllbhh2", 'payload': "energy: 75"}]
-publish.multiple(msgs, hostname="mqtt-dashboard.com", port=1883, protocol=paho.MQTTv31)
-```
+    - **Yes.** MQTT on port 1883 isn't encrypted, so the topic (`oamkiotcourse/test/gllbhh1`) and the payload can be read by anyone who captures the traffic. Wireshark shows the message field as hexadecimal (`656e657267793a203930`), but with right-click and `copy as ASCII` it shows correctly as `energy: 90` (Figure 6.6). Using port 8883 (MQTT over TLS) would hide it.
 
 ![](./src/img/mqtt_python.png)
 
-**_Figure 6.4_** — MQTT messages published `oamkiotcourse/test/gllbhh1` and `oamkiotcourse/test/gllbhh2` using the python script provided.
+**_Figure 6.4_** — HiveMQ websocket client subscribed to `oamkiotcourse/#` (left) receiving the messages published with the Python script (right): first the original example (`test 12356789`, `test 987654321`), then my modified messages (`message 1`/`message 2` and `energy: 90`/`energy: 75`) on `oamkiotcourse/test/gllbhh1` and `gllbhh2`.
 
 ![](./src/img/mqtt_wireshark.png)
 
@@ -360,13 +364,3 @@ publish.multiple(msgs, hostname="mqtt-dashboard.com", port=1883, protocol=paho.M
 **_Figure 6.6_** — the message shows as Hexadecimal. But with right-click and `copy as ASCII` the message shows correctly ("energy: 90")
 
 ---
-
-## Extra assignments
-
-> No need to document to the learning diary. Ignore these for peer reviews and grading.
-
-### Test this Raspberry Pi Sense HAT emulator and test the example codes. Try code changes
-
-### Check some MQTT tagged projects in the Thingspeak. For example Smart Aquarium, and related repository [lcsjunior/arduino-smart-aquarium](https://github.com/lcsjunior/arduino-smart-aquarium)
-
-### Read and comment this thesis shortly. Note that thesis topic is somewhat misleading. Study what is BLE, BLE beacons etc: Context-aware digital services : using BLE Beacons
